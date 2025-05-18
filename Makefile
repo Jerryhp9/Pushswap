@@ -18,7 +18,7 @@ RM = rm -f
 LIBFT_DIR = Libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
-SRC = struct.c src/pushswap_utils.c
+SRC = struct.c hfunction/pushswap_utils.c operations/swap_a.c
 
 OBJ = $(SRC:.c=.o)
 

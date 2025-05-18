@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   push_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhor <jhor@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 16:13:35 by jhor              #+#    #+#             */
-/*   Updated: 2025/05/12 16:13:35 by jhor             ###   ########.fr       */
+/*   Created: 2025/05/16 19:28:22 by jhor              #+#    #+#             */
+/*   Updated: 2025/05/16 19:28:22 by jhor             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-#define PUSHSWAP_H
+#include "../pushswap.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "Libft/libft.h"
+nodes *swap_a(nodes *head)
+{
+	nodes *temp;
+	nodes *temp2;
 
-int		ft_atoi(const char *str);
-nodes	*command_nodes(int *data, int argc, char **argv);
-nodes	*swap_a(nodes *head);
-void	print_content(void *content);
-void	free_data(int *data);
-void	free_nodes(nodes *head);
-
-
-
-
-#endif
+	temp = head;
+	if (head->next_link != NULL)
+		head = head->next_link;
+	if (head->next_link != NULL)
+		temp2 = head->next_link;
+	head->next_link = temp;
+	head->prev_link = NULL;
+	temp->prev_link = head;
+	temp->next_link = temp2;
+	return (head);
+}
