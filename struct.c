@@ -95,22 +95,69 @@ nodes	*command_nodes(int *data, int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	int		*data;
+	int		*data;;
 	nodes	*temp;
 	nodes	*new_temp;
+	nodes	*temp2;
 	data = 0;
+	temp2 = NULL;
 	temp = command_nodes(data, argc, argv);
-	ft_lstiter(temp, print_content);
+	// ft_lstiter(temp, print_content);
 	new_temp = swap_a(temp);
-	ft_lstiter(new_temp, print_content);
+	// ft_lstiter(new_temp, print_content);
+	new_temp = rotate_a(new_temp);
+	// ft_lstiter(new_temp, print_content);
+	new_temp = r_rotate_a(new_temp);
+	// ft_lstiter(new_temp, print_content);
+	// printf("\n");
+	// ft_lstiter(temp2, print_content);
+	push_b(&new_temp, &temp2);
+	// ft_lstiter(temp2, print_content);
+	// printf("\n");
+	// ft_lstiter(new_temp, print_content);
+	push_b(&new_temp, &temp2);
+	// printf("\n");
+	// ft_lstiter(temp2, print_content);
+	// printf("\n");
+	// ft_lstiter(new_temp, print_content);
+	// printf("\n");
+	temp2 = swap_b(temp2);
+	// ft_lstiter(temp2, print_content);
+	push_b(&new_temp, &temp2);
+	// ft_lstiter(temp2, print_content);
+	// printf("\n");
+	// ft_lstiter(new_temp, print_content);
+	// printf("\n");
+	temp2 = rotate_b(temp2);
+	// ft_lstiter(temp2, print_content);
+	// printf("\n");
+	temp2 = r_rotate_b(temp2);
+	// ft_lstiter(temp2, print_content);
+	// printf("\n");
+	// ft_lstiter(new_temp, print_content);
+	// printf("\n");
+	// push_a(&new_temp, &temp2);
+	// ft_lstiter(temp2, print_content);
+	// printf("\n");
+	// ft_lstiter(new_temp, print_content);
+	// temp2 = swap_b(temp2);
+	// push_a(&new_temp, &temp2);
+	// printf("\n");
+	// ft_lstiter(new_temp, print_content);
+	// printf("\n");
+	// push_a(&new_temp, &temp2);
+	// ft_lstiter(new_temp, print_content);
+	// printf("\n");
+	swap_s (&new_temp, &temp2);
+	// ft_lstiter(new_temp, print_content);
+	// printf("\n");
+	ft_lstiter(temp2, print_content);
+	printf("\n");
+	r_rotate_r(&new_temp, &temp2);
+	ft_lstiter(temp2, print_content);
+	printf("\n");
+	// ft_lstiter(new_temp, print_content);
+	free_nodes(temp2);
 	free_nodes(new_temp);
-	// int *data1;
-	// data = convert_int(argc, argv);
-	// int i = 0;
-	// while (data[i])
-	// {
-	// 	printf("%d\n", data[i]);
-	// 	i++;
-	// }
 	return (0);
 }

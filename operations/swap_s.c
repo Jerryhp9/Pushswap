@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_a.c                                           :+:      :+:    :+:   */
+/*   swap_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhor <jhor@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 19:28:22 by jhor              #+#    #+#             */
-/*   Updated: 2025/05/16 19:28:22 by jhor             ###   ########.fr       */
+/*   Created: 2025/05/22 16:36:22 by jhor              #+#    #+#             */
+/*   Updated: 2025/05/22 16:36:22 by jhor             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-nodes *swap_a(nodes *head_a)
+void	swap_s(nodes **head_a, nodes **head_b)
 {
-	nodes *temp;
-	nodes *temp2;
-
-	temp2 = NULL;
-	temp = head_a;
-	if (!head_a || head_a->next_link == NULL)
-		return (head_a);
-	if (head_a->next_link != NULL)
-		head_a = head_a->next_link;
-	if (head_a->next_link != NULL)
-		temp2 = head_a->next_link;
-	head_a->next_link = temp;
-	head_a->prev_link = NULL;
-	temp->prev_link = head_a;
-	temp->next_link = temp2;
-	return (head_a);
+	if ((*head_a)->next_link != NULL)
+		*head_a = swap_a(*head_a);
+	if ((*head_b)->next_link != NULL)
+		*head_b = swap_b(*head_b);
 }

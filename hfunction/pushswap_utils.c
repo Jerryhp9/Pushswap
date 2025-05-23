@@ -17,7 +17,7 @@ void print_content(void *content)
 	nodes	*data;
 	
 	data = ((nodes *)content);
-	printf("%d\n", data->data);
+	printf("%d", data->data);
 }
 
 void free_data(int *data)
@@ -30,6 +30,7 @@ void free_data(int *data)
 		free(data + i);
 		i++;
 	}
+	printf("\n");
 }
 
 void free_nodes(nodes *head)

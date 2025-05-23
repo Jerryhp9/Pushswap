@@ -11,14 +11,17 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -g -Wall -Werror -Wextra
 NAME = push_swap
 RM = rm -f
 
 LIBFT_DIR = Libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
-SRC = struct.c hfunction/pushswap_utils.c operations/swap_a.c
+SRC = struct.c hfunction/pushswap_utils.c operations/swap_a.c \
+operations/rotate_a.c operations/r_rotate_a.c operations/push_b.c \
+operations/swap_b.c operations/rotate_b.c operations/r_rotate_b.c \
+operations/push_a.c operations/swap_s.c operations/r_rotate_r.c \
 
 OBJ = $(SRC:.c=.o)
 

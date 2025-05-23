@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_a.c                                           :+:      :+:    :+:   */
+/*   r_rotate_r.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhor <jhor@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 19:28:22 by jhor              #+#    #+#             */
-/*   Updated: 2025/05/16 19:28:22 by jhor             ###   ########.fr       */
+/*   Created: 2025/05/23 18:47:08 by jhor              #+#    #+#             */
+/*   Updated: 2025/05/23 18:47:08 by jhor             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-nodes *swap_a(nodes *head_a)
+void r_rotate_r(nodes **head_a, nodes **head_b)
 {
-	nodes *temp;
-	nodes *temp2;
-
-	temp2 = NULL;
-	temp = head_a;
-	if (!head_a || head_a->next_link == NULL)
-		return (head_a);
-	if (head_a->next_link != NULL)
-		head_a = head_a->next_link;
-	if (head_a->next_link != NULL)
-		temp2 = head_a->next_link;
-	head_a->next_link = temp;
-	head_a->prev_link = NULL;
-	temp->prev_link = head_a;
-	temp->next_link = temp2;
-	return (head_a);
+	if (*head_a != NULL)
+		*head_a = r_rotate_a(*head_a);
+	if (*head_b != NULL)
+		*head_b = r_rotate_b(*head_b);
 }
