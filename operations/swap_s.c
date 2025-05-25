@@ -12,10 +12,13 @@
 
 #include "../pushswap.h"
 
-void	swap_s(nodes **head_a, nodes **head_b)
+void	swap_s(t_container *stack)
 {
-	if ((*head_a)->next_link != NULL)
-		*head_a = swap_a(*head_a);
-	if ((*head_b)->next_link != NULL)
-		*head_b = swap_b(*head_b);
+	stack->is_combine = 1;
+	if (stack->pstk_a->next_link != NULL)
+		swap_a(stack);
+	if (stack->pstk_b->next_link != NULL)
+		swap_b(stack);
+	printf("ss\n");
+	stack->is_combine = 0;
 }

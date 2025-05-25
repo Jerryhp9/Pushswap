@@ -12,10 +12,13 @@
 
 #include "../pushswap.h"
 
-void r_rotate_r(nodes **head_a, nodes **head_b)
+void r_rotate_r(t_container *stack)
 {
-	if (*head_a != NULL)
-		*head_a = r_rotate_a(*head_a);
-	if (*head_b != NULL)
-		*head_b = r_rotate_b(*head_b);
+	stack->is_combine = 1;
+	if (stack->pstk_a != NULL)
+		r_rotate_a(stack);
+	if (stack->pstk_b != NULL)
+		r_rotate_b(stack);
+	printf("rr\n");
+	stack->is_combine = 0;
 }

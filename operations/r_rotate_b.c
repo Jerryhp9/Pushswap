@@ -12,35 +12,22 @@
 
 #include "../pushswap.h"
 
-nodes *r_rotate_b(nodes *head_b)
+void	r_rotate_b(t_container *stack)
 {
-	nodes *temp;
-	nodes *temp2;
+	nodes *last_node;
+	nodes *second_last;
 
-	temp = head_b;
-	temp2 = NULL;
-	// ft_lstiter(temp2, print_content);
-	// printf("\n");
-	while (temp->next_link != NULL)
-		temp = temp->next_link;
-	ft_lstiter(temp, print_content);
-	printf("\n");
-	temp2 = temp->prev_link;
-	ft_lstiter(temp2, print_content);
-	printf("\n");
-	printf("\n");
-	if (temp2->next_link != NULL)
-		temp2->next_link = NULL;
-	ft_lstiter(temp2, print_content);
-	printf("\n");
-	printf("\n");
-	temp->prev_link = NULL;
-	temp->next_link = head_b;
-	head_b->prev_link = temp;
-	head_b = temp;
-	// while (temp->next_link != NULL)
-	// 	temp = temp->next_link;
-	// ft_lstiter(temp, print_content);
-	// printf("\n");
-	return (head_b);
+	last_node = stack->pstk_b;
+	second_last = NULL;
+	while (last_node->next_link != NULL)
+		last_node = last_node->next_link;
+	second_last = last_node->prev_link;
+	if (second_last->next_link != NULL)
+		second_last->next_link = NULL;
+	last_node->prev_link = NULL;
+	last_node->next_link = stack->pstk_b;
+	stack->pstk_b->prev_link = last_node;
+	stack->pstk_b = last_node;
+	if (stack->is_combine)
+		printf("rrb\n");
 }

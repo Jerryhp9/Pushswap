@@ -12,21 +12,22 @@
 
 #include "../pushswap.h"
 
-nodes *rotate_b(nodes *head_b)
+void	rotate_b(t_container *stack)
 {
 	nodes *temp;
 	nodes *temp2;
 
 	temp2 = NULL;
-	temp = head_b;
+	temp = stack->pstk_b;
 	while (temp->next_link != NULL)
 		temp = temp->next_link;
-	if (head_b->next_link != NULL)
-		head_b = head_b->next_link;
-	temp2 = head_b->prev_link;
+	if (stack->pstk_b->next_link != NULL)
+		stack->pstk_b = stack->pstk_b->next_link;
+	temp2 = stack->pstk_b->prev_link;
 	temp2->prev_link = temp;
 	temp2->next_link = NULL;
 	temp->next_link = temp2;
-	head_b->prev_link = NULL;
-	return (head_b);
+	stack->pstk_b->prev_link = NULL;
+	if(stack->is_combine == 0)
+		printf("rb\n");
 }

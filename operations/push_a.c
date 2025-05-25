@@ -12,31 +12,20 @@
 
 #include "../pushswap.h"
 
-void	push_a(nodes **head_a, nodes **head_b)
+void	push_a(t_container *stack)
 {
 	nodes* nodep;
 
-	if (*head_b == NULL)
+	if (stack->pstk_b == NULL)
 		return;
-	nodep = *head_b;
-	if ((*head_b)->next_link != NULL)
-	{
-		*head_b = (*head_b)->next_link;
-		(*head_b)->prev_link = NULL;
-	}
-	nodep->next_link = NULL;
+	nodep = stack->pstk_b;
+	stack->pstk_b = stack->pstk_b->next_link;
+	nodep->next_link = stack->pstk_a;
+	stack->pstk_a = nodep;
+	stack->pstk_a->prev_link = nodep;
+	if (stack->pstk_b != NULL)
+		(stack->pstk_b)->prev_link = NULL;
 	nodep->prev_link = NULL;
-	if (*head_a == NULL)
-	{
-		*head_a = nodep;
-		(*head_a)->next_link = NULL;
-		(*head_a)->prev_link = NULL;
-	}
-	else if (*head_a != NULL)
-	{
-		nodep->next_link = *head_a;
-		nodep->prev_link = NULL;
-		(*head_a)->prev_link = nodep;
-		*head_a = nodep;
-	}
+	if (stack->is_combine == 0)
+		printf("pa\n");
 }

@@ -17,23 +17,29 @@
 #include <stdlib.h>
 #include "Libft/libft.h"
 
-int		ft_atoi(const char *str);
-nodes	*command_nodes(int *data, int argc, char **argv);
-nodes	*swap_a(nodes *head_a);
-nodes	*swap_b(nodes *head_b);
-void	swap_s(nodes **head_a, nodes **head_b);
-nodes	*rotate_a(nodes *head);
-nodes	*rotate_b(nodes *head_b);
-nodes	*r_rotate_a(nodes *head);
-nodes	*r_rotate_b(nodes *head_b);
-void	r_rotate_r(nodes **head_a, nodes **head_b);
-void	push_a(nodes **head_a, nodes **head_b);
-void	push_b(nodes **head_a, nodes **head_b);
-void	print_content(void *content);
-void	free_data(int *data);
-void	free_nodes(nodes *head);
+typedef struct s_container {
+	nodes *pstk_a;
+	nodes *pstk_b;
+	int is_combine;
+} t_container;
 
-
-
+int			ft_atoi(const char *str);
+nodes		*command_nodes(int *data, int argc, char **argv);
+void		last_node(nodes **head, int data);
+void		swap_a(t_container *stack);
+void		swap_b(t_container *stack);
+void		swap_s(t_container *stack);
+void		rotate_a(t_container *stack);
+void		rotate_b(t_container *stack);
+void		rotate_r(t_container *stack);
+void		r_rotate_a(t_container *stack);
+void		r_rotate_b(t_container *stack);
+void		r_rotate_r(t_container *stack);
+void		push_a(t_container *stack);
+void		push_b(t_container *stack);
+void		print_content(void *content);
+void		free_data(int *data);
+void		free_nodes(nodes *head);
+t_container	init (nodes *stk_a, nodes *stk_b);
 
 #endif

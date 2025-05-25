@@ -44,6 +44,17 @@ void free_nodes(nodes *head)
 	}
 	free(head);
 }
+
+t_container init (nodes *stk_a, nodes *stk_b)
+{
+	t_container container;
+
+	container.pstk_a = stk_a;
+	container.pstk_b = stk_b;
+	container.is_combine = 0;
+	return (container);
+}
+
 // nodes *free_firstnode(nodes *head)
 // {
 // 		nodes *temp;

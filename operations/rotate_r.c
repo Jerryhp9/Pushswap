@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_b.c                                           :+:      :+:    :+:   */
+/*   rotate_r.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhor <jhor@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 17:17:45 by jhor              #+#    #+#             */
-/*   Updated: 2025/05/19 17:17:45 by jhor             ###   ########.fr       */
+/*   Created: 2025/05/25 18:24:06 by jhor              #+#    #+#             */
+/*   Updated: 2025/05/25 18:24:06 by jhor             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-void	push_b(t_container *stack)
+void	rotate_r(t_container *stack)
 {
-	nodes	*nodep;
-
-	if (stack->pstk_a == NULL)
-		return;
-	nodep = stack->pstk_a;
-	stack->pstk_a = stack->pstk_a->next_link;
-	nodep->next_link = stack->pstk_b;
-	stack->pstk_b = nodep;
-	stack->pstk_b->prev_link = nodep;
-	if (stack->pstk_a != NULL)
-		stack->pstk_a->prev_link = NULL;
-	nodep->prev_link = NULL;
-	if (stack->is_combine == 0)
-		printf("pb\n");
+	stack->is_combine = 1;
+	if (stack->pstk_a->next_link != NULL)
+		rotate_a(stack);
+	if (stack->pstk_b->next_link != NULL)
+		rotate_b(stack);
+	printf("rr\n");
+	stack->is_combine = 0;
 }
