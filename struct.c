@@ -45,6 +45,7 @@ void	last_node(nodes **head, int data)
 	// temp = NULL;
 	// return (*head);
 }
+
 int *convert_int(int argc, char **argv)
 {
 	int	i;
@@ -68,11 +69,11 @@ int *convert_int(int argc, char **argv)
 nodes	*command_nodes(int *data, int argc, char **argv)
 {
 	nodes	*head;
-	// nodes	*body
+	// nodes	*body;
 	int		i;
 
 	head = NULL;
-	i = 0;
+	i = 1;
 	if (argc < 2)
 		return (0);
 	data = convert_int(argc, argv);
@@ -80,11 +81,11 @@ nodes	*command_nodes(int *data, int argc, char **argv)
 		return (0);
 	// (void)argc;
 	// if (argv[1])
-	head = create_nodes(head, data[i]);
+	head = create_nodes(head, data[0]);
 	// body = head;
-	while (argv[i + 2])
+	while (i < argc - 1)
 	{
-		last_node(&head, data[i + 1]);
+		last_node(&head, data[i]);
 		i++;
 	}
 	free(data);
@@ -95,32 +96,37 @@ nodes	*command_nodes(int *data, int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	int		*data;;
-	nodes	*stk_a;
-	nodes	*stk_b;
+	int			*data;
+	nodes		*stk_a;
+	nodes		*stk_b;
 	t_container	stack;
 
 	data = 0;
 	stk_b = NULL;
 	stk_a = command_nodes(data, argc, argv);
 	stack = init(stk_a, stk_b); //understand the flow of the struct stack
-	push_b(&stack);
-	swap_s(&stack);
-	push_b(&stack);
-	swap_s(&stack);
-	push_b(&stack);
-	r_rotate_r(&stack);
-	rotate_r(&stack);
-	push_a(&stack);
-	swap_s(&stack);
-	push_a(&stack);
-	swap_a(&stack);
-	push_a(&stack);
-	swap_a(&stack);
-	ft_lstiter(stack.pstk_a, print_content);
-	printf("\n");
-	ft_lstiter(stack.pstk_b, print_content);
-	printf("\n");
+	// push_b(&stack);
+	// swap_s(&stack);
+	// push_b(&stack);
+	// swap_s(&stack);
+	// push_b(&stack);
+	// r_rotate_r(&stack);
+	// rotate_r(&stack);
+	// push_a(&stack);
+	// swap_s(&stack);
+	// push_a(&stack);
+	// swap_a(&stack);
+	// push_a(&stack);
+	// swap_a(&stack);
+	// ft_lstiter(stack.pstk_a, print_content);
+	// printf("\n");
+	// ft_lstiter(stack.pstk_b, print_content);
+	// printf("\n");
+	sort3(&stack);
+	// ft_lstiter(stack.pstk_a, print_content);
+	// printf("\n");
+	// ft_lstiter(stack.pstk_b, print_content);
+	// printf("\n");
 	free_nodes(stack.pstk_a);
 	// free_nodes(stack.pstk_b);
 	return (0);

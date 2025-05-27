@@ -38,6 +38,7 @@ void		r_rotate_r(t_container *stack);
 void		push_a(t_container *stack);
 void		push_b(t_container *stack);
 void		print_content(void *content);
+void		sort3(t_container *stack);
 void		free_data(int *data);
 void		free_nodes(nodes *head);
 t_container	init (nodes *stk_a, nodes *stk_b);
