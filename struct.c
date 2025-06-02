@@ -99,10 +99,12 @@ int main(int argc, char **argv)
 	int			*data;
 	nodes		*stk_a;
 	nodes		*stk_b;
+	// nodes		*pmin;
 	t_container	stack;
 
 	data = 0;
 	stk_b = NULL;
+	// pmin = NULL;
 	stk_a = command_nodes(data, argc, argv);
 	stack = init(stk_a, stk_b); //understand the flow of the struct stack
 	// push_b(&stack);
@@ -122,8 +124,12 @@ int main(int argc, char **argv)
 	// printf("\n");
 	// ft_lstiter(stack.pstk_b, print_content);
 	// printf("\n");
-	sort3(&stack);
-	// ft_lstiter(stack.pstk_a, print_content);
+	sort5(&stack);
+	printf("\n");
+	ft_lstiter(stack.pstk_a, print_content);
+	printf("\n");
+	// pmin = find_min(pmin, &stack);
+	// ft_lstiter(pmin, print_content);
 	// printf("\n");
 	// ft_lstiter(stack.pstk_b, print_content);
 	// printf("\n");

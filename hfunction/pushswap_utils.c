@@ -17,7 +17,7 @@ void print_content(void *content)
 	nodes	*data;
 	
 	data = ((nodes *)content);
-	printf("%d", data->data);
+	printf("%d\n", data->data);
 }
 
 void free_data(int *data)
