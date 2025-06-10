@@ -12,7 +12,7 @@
 
 #include "../pushswap.h"
 
-void print_content(void *content)
+void	print_content(void *content)
 {
 	nodes	*data;
 	
@@ -20,7 +20,7 @@ void print_content(void *content)
 	printf("%d\n", data->data);
 }
 
-void free_data(int *data)
+void	free_data(int *data)
 {
 	int i;
 
@@ -33,7 +33,7 @@ void free_data(int *data)
 	printf("\n");
 }
 
-void free_nodes(nodes *head)
+void	free_nodes(nodes *head)
 {
 	nodes* temp;
 	while (head->next_link != NULL)
@@ -45,13 +45,16 @@ void free_nodes(nodes *head)
 	free(head);
 }
 
-t_container init (nodes *stk_a, nodes *stk_b)
+t_container	init (nodes *stk_a, nodes *stk_b)
 {
 	t_container container;
 
 	container.pstk_a = stk_a;
 	container.pstk_b = stk_b;
 	container.is_combine = 0;
+	container.min.size = 0;
+	container.mid.size = 0;
+	container.max.size = 0;
 	return (container);
 }
 

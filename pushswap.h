@@ -17,11 +17,45 @@
 #include <stdlib.h>
 #include "Libft/libft.h"
 
+enum	e_loc {
+TOP_A,
+BOTTOM_A,
+TOP_B,
+	BOTTOM_B,
+};
+
+typedef struct s_chunk {
+	enum e_loc location;
+	int size;
+} t_chunk;
+
 typedef struct s_container {
 	nodes *pstk_a;
 	nodes *pstk_b;
 	int is_combine;
+	t_chunk	min;
+	t_chunk	mid;
+	t_chunk	max;
 } t_container;
+
+
+// typedef struct s_cato {
+// 	t_chunk	min;
+// 	t_chunk	mid;
+// 	t_chunk	max;
+// } t_cato;
+
+typedef struct s_split {
+	int	size;
+	int	pivot1;
+	int	pivot2;
+	int	i;
+	int	rank;
+	int	val;
+	int max_count;
+	int mid_count;
+	int min_count;
+} t_split;
 
 int			ft_atoi(const char *str);
 nodes		*command_nodes(int *data, int argc, char **argv);
@@ -48,5 +82,9 @@ void		position_b(int position, t_container *stack);
 void		free_data(int *data);
 void		free_nodes(nodes *head);
 t_container	init (nodes *stk_a, nodes *stk_b);
+int			*index_nodes(int *data, int argc, char **argv);
+t_split		*innit_chunk(int argc, t_split *split);
+void		compare_split(int *data, int argc, t_container *stack, t_split *split);
+void		apply_split_chunk(t_container *stack, t_split *split);
 
 #endif

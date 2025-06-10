@@ -99,14 +99,24 @@ int main(int argc, char **argv)
 	int			*data;
 	nodes		*stk_a;
 	nodes		*stk_b;
+	// int			size;
+	int i = 0;
 	// nodes		*pmin;
 	t_container	stack;
+	t_split		split;
 
 	data = 0;
 	stk_b = NULL;
 	// pmin = NULL;
 	stk_a = command_nodes(data, argc, argv);
 	stack = init(stk_a, stk_b); //understand the flow of the struct stack
+	data = convert_int(argc, argv);
+	data = index_nodes(data, argc, argv);
+	while (i < argc - 1)
+	{
+		printf("%d\n", data[i]);
+		i++;
+	}
 	// push_b(&stack);
 	// swap_s(&stack);
 	// push_b(&stack);
@@ -121,19 +131,24 @@ int main(int argc, char **argv)
 	// push_a(&stack);
 	// swap_a(&stack);
 	// ft_lstiter(stack.pstk_a, print_content);
-	// printf("\n");
+	printf("\n");
 	// ft_lstiter(stack.pstk_b, print_content);
 	// printf("\n");
-	sort5(&stack);
+	// sort5(&stack);
 	printf("\n");
+	// ft_lstiter(stack.pstk_a, print_content);
+	// printf("\n");
+	// pmin = find_min(pmin, &stack);
+	// free_nodes(stack.pstk_b);
+	// push_split(&stack);
+	compare_split(data, argc, &stack, &split);
+	// categorize(data, argc, &stack, &split);
 	ft_lstiter(stack.pstk_a, print_content);
 	printf("\n");
-	// pmin = find_min(pmin, &stack);
-	// ft_lstiter(pmin, print_content);
-	// printf("\n");
-	// ft_lstiter(stack.pstk_b, print_content);
-	// printf("\n");
+	ft_lstiter(stack.pstk_b, print_content);
+	printf("\n");
 	free_nodes(stack.pstk_a);
-	// free_nodes(stack.pstk_b);
+	free_nodes(stack.pstk_b);
+	free(data);
 	return (0);
 }
