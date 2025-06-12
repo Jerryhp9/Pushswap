@@ -58,6 +58,16 @@ t_container	init (nodes *stk_a, nodes *stk_b)
 	return (container);
 }
 
+// const char *get_location_name(enum e_loc loc) {
+//     switch (loc) {
+//         case TOP_A: return "TOP_A";
+//         case BOTTOM_A: return "BOTTOM_A";
+//         case TOP_B: return "TOP_B";
+//         case BOTTOM_B: return "BOTTOM_B";
+//         default: return "UNKNOWN";
+//     }
+// }
+
 // nodes *free_firstnode(nodes *head)
 // {
 // 		nodes *temp;

@@ -18,9 +18,9 @@
 #include "Libft/libft.h"
 
 enum	e_loc {
-TOP_A,
-BOTTOM_A,
-TOP_B,
+	TOP_A,
+	BOTTOM_A,
+	TOP_B,
 	BOTTOM_B,
 };
 
@@ -36,6 +36,7 @@ typedef struct s_container {
 	t_chunk	min;
 	t_chunk	mid;
 	t_chunk	max;
+	t_chunk origin;
 } t_container;
 
 
@@ -52,9 +53,8 @@ typedef struct s_split {
 	int	i;
 	int	rank;
 	int	val;
-	int max_count;
-	int mid_count;
-	int min_count;
+	int	pivotsmall;
+	int pivotbig;
 } t_split;
 
 int			ft_atoi(const char *str);
@@ -86,5 +86,7 @@ int			*index_nodes(int *data, int argc, char **argv);
 t_split		*innit_chunk(int argc, t_split *split);
 void		compare_split(int *data, int argc, t_container *stack, t_split *split);
 void		apply_split_chunk(t_container *stack, t_split *split);
+// void		locate_chunk(t_container *stack);
+// const char	*get_location_name(enum e_loc loc);
 
 #endif
