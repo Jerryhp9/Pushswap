@@ -147,6 +147,11 @@ int main(int argc, char **argv)
 	printf("\n");
 	ft_lstiter(stack.pstk_b, print_content);
 	printf("\n");
+	quick_sort(&stack, &stack.max, &split);
+	ft_lstiter(stack.pstk_a, print_content);
+	printf("\n");
+	ft_lstiter(stack.pstk_b, print_content);
+	printf("\n");
 	free_nodes(stack.pstk_a);
 	free_nodes(stack.pstk_b);
 	free(data);

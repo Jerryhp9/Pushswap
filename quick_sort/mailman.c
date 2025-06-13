@@ -13,24 +13,24 @@
 #include "../pushswap.h"
 
 //!these functions are for splitting 3 ways depending on the location
-void	TopA_sender(t_container *stack, t_split *split)
+void	TopA_sender(t_container *stack, t_chunk *chunk, t_split *split)
 {
-	if (stack->origin.location == TOP_A)
+	if (chunk->location == TOP_A)
 	{
-		if (split->rank <= split->pivot1)
+		if (chunk->size <= split->pivotS)
 		{
 			push_b(stack);
 			rotate_b(stack);
 			stack->min.size++;
 			stack->min.location = BOTTOM_B;
 		}
-		else if (split->rank > split->pivot1 && split->rank <= split->pivot2)
+		else if (chunk->size > split->pivotS && chunk->size <= split->pivotB)
 		{
 			push_b(stack);
 			stack->mid.size++;
 			stack->mid.location = TOP_B;
 		}
-		else if (split->rank > split->pivot2)
+		else if (chunk->size > split->pivotB)
 		{
 			rotate_b(stack);
 			stack->max.size++;
@@ -38,11 +38,11 @@ void	TopA_sender(t_container *stack, t_split *split)
 		}
 	}
 }
-void	BotA_sender(t_container *stack, t_split *split)
+void	BotA_sender(t_container *stack, t_chunk *chunk, t_split *split)
 {
-	if (stack->origin.location == BOTTOM_A)
+	if (chunk->location == BOTTOM_A)
 	{
-		if (split->rank <= split->pivot1)
+		if (chunk->size <= split->pivotS)
 		{
 			r_rotate_a(stack);
 			push_b(stack);
@@ -50,14 +50,14 @@ void	BotA_sender(t_container *stack, t_split *split)
 			stack->min.size++;
 			stack->min.location = BOTTOM_B;
 		}
-		else if (split->rank > split->pivot1 && split->rank <= split->pivot2)
+		else if (chunk->size > split->pivotS && chunk->size <= split->pivotB)
 		{
 			r_rotate_a(stack);
 			push_b(stack);
 			stack->mid.size++;
 			stack->mid.location = TOP_B;
 		}
-		else if (split->rank > split->pivot2)
+		else if (chunk->size > split->pivotB)
 		{
 			r_rotate_a(stack);
 			stack->max.size++;
@@ -65,24 +65,25 @@ void	BotA_sender(t_container *stack, t_split *split)
 		}
 	}
 }
-void	TopB_sender(t_container *stack, t_split *split)
+
+void	TopB_sender(t_container *stack, t_chunk *chunk, t_split *split)
 {
-	if (stack->origin.location == TOP_B)
+	if (chunk->location == TOP_B)
 	{
-		if (split->rank <= split->pivot1)
+		if (chunk->size <= split->pivotS)
 		{
 			rotate_b(stack);
 			stack->min.size++;
 			stack->min.location = BOTTOM_B;
 		}
-		else if (split->rank > split->pivot1 && split->rank <= split->pivot2)
+		else if (chunk->size > split->pivotS && chunk->size <= split->pivotB)
 		{
 			push_a(stack);
 			rotate_a(stack);
 			stack->mid.size++;
 			stack->mid.location = BOTTOM_A;
 		}
-		else if (split->rank > split->pivot2)
+		else if (chunk->size > split->pivotB)
 		{
 			push_a(stack);
 			stack->max.size++;
@@ -91,17 +92,17 @@ void	TopB_sender(t_container *stack, t_split *split)
 	}
 }
 
-void	BotB_sender(t_container *stack, t_split *split)
+void	BotB_sender(t_container *stack, t_chunk *chunk, t_split *split)
 {
-	if (stack->origin.location == BOTTOM_B)
+	if (chunk->location == BOTTOM_B)
 	{
-		if (split->rank <= split->pivot1)
+		if (chunk->size <= split->pivotS)
 		{
 			r_rotate_b(stack);
 			stack->min.size++;
 			stack->min.location = TOP_B;
 		}
-		else if (split->rank > split->pivot1 && split->rank <= split->pivot2)
+		else if (chunk->size > split->pivotS && chunk->size <= split->pivotB)
 		{
 			r_rotate_b(stack);
 			push_a(stack);
@@ -109,7 +110,7 @@ void	BotB_sender(t_container *stack, t_split *split)
 			stack->mid.size++;
 			stack->mid.location = BOTTOM_A;
 		}
-		else if (split->rank > split->pivot2)
+		else if (chunk->size > split->pivotB)
 		{
 			r_rotate_b(stack);
 			push_a(stack);
@@ -118,3 +119,4 @@ void	BotB_sender(t_container *stack, t_split *split)
 		} 
 	}
 }
+

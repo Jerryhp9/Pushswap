@@ -53,8 +53,8 @@ typedef struct s_split {
 	int	i;
 	int	rank;
 	int	val;
-	int	pivotsmall;
-	int pivotbig;
+	int	pivotS;
+	int pivotB;
 } t_split;
 
 int			ft_atoi(const char *str);
@@ -86,6 +86,14 @@ int			*index_nodes(int *data, int argc, char **argv);
 t_split		*innit_chunk(int argc, t_split *split);
 void		compare_split(int *data, int argc, t_container *stack, t_split *split);
 void		apply_split_chunk(t_container *stack, t_split *split);
+void		TopA_sender(t_container *stack, t_chunk *chunk, t_split *split);
+void		BotA_sender(t_container *stack, t_chunk *chunk, t_split *split);
+void		TopB_sender(t_container *stack, t_chunk *chunk, t_split *split);
+void		BotB_sender(t_container *stack, t_chunk *chunk, t_split *split);
+void		sender(t_container *stack);
+void		send_top_sort3(t_container *stack);
+void		quick_sort(t_container *stack, t_chunk *chunk, t_split *split);
+void		recursive_split(t_container *stack, t_chunk *chunk, t_split *split);
 // void		locate_chunk(t_container *stack);
 // const char	*get_location_name(enum e_loc loc);
 

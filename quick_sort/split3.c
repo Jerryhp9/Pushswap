@@ -17,9 +17,6 @@ t_split	*innit_chunk(int argc, t_split *split)
 	split->size = argc - 1;
 	split->pivot1 = split->size / 3;
 	split->pivot2 = 2 * split->size / 3;
-	split->min_count = 0;
-	split->mid_count = 0;
-	split->max_count = 0;
 
 	return (split);
 }
@@ -101,25 +98,5 @@ void	compare_split(int *data, int argc, t_container *stack, t_split *split)
 		stack->mid.location = TOP_B;
 	else if (stack->min.size != 0)
 		stack->min.location = BOTTOM_B;
-}
-
-void	quick_sort(t_container *stack, t_split *split)
-{
-	stack->origin = stack->max;
-	split->pivotsmall = stack->origin.size / 3;
-	split->pivotbig = stack->origin.size * 2 / 3;
-	if (stack->origin.size <= 2 && stack->origin.location == TOP_A)
-		sort3(stack);
-	else if (stack->origin.size > 2 && stack->origin.location != TOP_A)
-		apply_split_chunk(); //TODO: split into 3 and label them with chunk name, size and location(Mailman)
-	if (stack->max.size <= 2 && stack->max.location == TOP_A)
-		sort3(stack);
-	if (stack->mid.size <= 2 && stack->mid.location == TOP_A)
-		sort3(stack);
-	if (stack->min.size <= 2 && stack->min.location == TOP_A)
-		sort3(stack);
-	quick_sort(stack->max.size, split);
-	quick_sort(stack->mid.size, split);
-	quick_sort(stack->min.size, split);
 }
 
