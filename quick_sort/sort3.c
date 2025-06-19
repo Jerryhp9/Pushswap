@@ -12,6 +12,13 @@
 
 #include "../pushswap.h"
 
+void	extra_sort3(t_container *stack)
+{
+	rotate_a(stack);
+	swap_a(stack);
+	r_rotate_a(stack);
+}
+
 void	sort3(t_container *stack)
 {
 	nodes	*middle;
@@ -19,9 +26,14 @@ void	sort3(t_container *stack)
 
 	middle = stack->pstk_a->next_link;
 	last = middle->next_link;
+	// printf("head node in stack A is %d\n", stack->pstk_a->data); //! head node in stack A
+	// printf("second node in stack A is %d\n", middle->data);
+	// printf("third node in stack A is %d\n", last->data);
 	if (stack->pstk_a->data < middle->data && middle->data < last->data)
 		return;
-	if (stack->pstk_a->data > middle->data && stack->pstk_a->data > last->data)
+	else if (stack->pstk_a->data < middle->data && middle->data > last->data)
+		extra_sort3(stack);
+	else if (stack->pstk_a->data > middle->data && stack->pstk_a->data > last->data)
 	{
 		rotate_a(stack);
 		if (middle->data > last->data)
@@ -32,7 +44,7 @@ void	sort3(t_container *stack)
 	else if (stack->pstk_a->data < middle->data && stack->pstk_a->data > last->data)
 		r_rotate_a(stack);
 	else if (stack->pstk_a->data < middle->data && stack->pstk_a->data < last->data)
-	{	
+	{
 		swap_a(stack);
 		rotate_a(stack);
 	}

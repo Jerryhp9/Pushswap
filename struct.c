@@ -100,60 +100,43 @@ int main(int argc, char **argv)
 	nodes		*stk_a;
 	nodes		*stk_b;
 	// int			size;
-	int i = 0;
+	// int i = 0;
 	// nodes		*pmin;
 	t_container	stack;
 	t_split		split;
+	// nodes		*start;
+	// t_chunk		chunk;
 
 	data = 0;
 	stk_b = NULL;
+	// printf("address of origin_max %p\n", &stack.origin_max);
 	// pmin = NULL;
 	stk_a = command_nodes(data, argc, argv);
 	stack = init(stk_a, stk_b); //understand the flow of the struct stack
 	data = convert_int(argc, argv);
 	data = index_nodes(data, argc, argv);
-	while (i < argc - 1)
-	{
-		printf("%d\n", data[i]);
-		i++;
-	}
-	// push_b(&stack);
-	// swap_s(&stack);
-	// push_b(&stack);
-	// swap_s(&stack);
-	// push_b(&stack);
-	// r_rotate_r(&stack);
-	// rotate_r(&stack);
-	// push_a(&stack);
-	// swap_s(&stack);
-	// push_a(&stack);
-	// swap_a(&stack);
-	// push_a(&stack);
-	// swap_a(&stack);
+	// while (i < argc - 1)
+	// {
+	// 	printf("%d\n", data[i]);
+	// 	i++;
+	// }
+	compare_split(data, argc, &stack, &split);
 	// ft_lstiter(stack.pstk_a, print_content);
-	printf("\n");
+	// printf("\n");
 	// ft_lstiter(stack.pstk_b, print_content);
 	// printf("\n");
-	// sort5(&stack);
-	printf("\n");
+	// if (stack.max.location == TOP_A)
+	// 	printf("Hello");
+	// start = find_start_node(&stack, &stack.max);
+	quick_sort(&stack, &stack.origin_max, &split);
+	quick_sort(&stack, &stack.origin_mid, &split);
+	quick_sort(&stack, &stack.origin_min, &split);
 	// ft_lstiter(stack.pstk_a, print_content);
 	// printf("\n");
-	// pmin = find_min(pmin, &stack);
-	// free_nodes(stack.pstk_b);
-	// push_split(&stack);
-	compare_split(data, argc, &stack, &split);
-	// categorize(data, argc, &stack, &split);
-	ft_lstiter(stack.pstk_a, print_content);
-	printf("\n");
-	ft_lstiter(stack.pstk_b, print_content);
-	printf("\n");
-	quick_sort(&stack, &stack.max, &split);
-	ft_lstiter(stack.pstk_a, print_content);
-	printf("\n");
-	ft_lstiter(stack.pstk_b, print_content);
-	printf("\n");
+	// ft_lstiter(stack.pstk_b, print_content);
+	// printf("\n");
 	free_nodes(stack.pstk_a);
-	free_nodes(stack.pstk_b);
+	// free_nodes(stack.pstk_b);
 	free(data);
 	return (0);
 }

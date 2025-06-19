@@ -28,6 +28,6 @@ void	r_rotate_b(t_container *stack)
 	last_node->next_link = stack->pstk_b;
 	stack->pstk_b->prev_link = last_node;
 	stack->pstk_b = last_node;
-	if (stack->is_combine)
+	if (stack->is_combine == 0)
 		printf("rrb\n");
 }

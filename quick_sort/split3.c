@@ -12,11 +12,14 @@
 
 #include "../pushswap.h"
 
-t_split	*innit_chunk(int argc, t_split *split)
+t_split	*innit_chunk(int argc, t_container *stack, t_split *split)
 {
 	split->size = argc - 1;
 	split->pivot1 = split->size / 3;
 	split->pivot2 = 2 * split->size / 3;
+	stack->origin_max.size = 0;
+	stack->origin_mid.size = 0;
+	stack->origin_min.size = 0;
 
 	return (split);
 }
@@ -26,7 +29,8 @@ void	apply_split_chunk(t_container *stack, t_split *split)
 	if (split->rank > split->pivot1 && split->rank <= split->pivot2)
 	{
 		push_b(stack);
-		stack->mid.size++;
+		stack->origin_mid.size++;
+		stack->origin_mid.location = TOP_B;
 		// printf("\n");
 		// printf("|%d|\n", stack->mid.size);
 		// printf("\n");
@@ -35,7 +39,8 @@ void	apply_split_chunk(t_container *stack, t_split *split)
 	{
 		push_b(stack);
 		rotate_b(stack);
-		stack->min.size++;
+		stack->origin_min.size++;
+		stack->origin_min.location = BOTTOM_B;
 		// printf("\n");
 		// printf("-%d-\n", stack->min.size);
 		// printf("\n");
@@ -43,7 +48,8 @@ void	apply_split_chunk(t_container *stack, t_split *split)
 	else if (split->rank > split->pivot2)
 	{
 		rotate_a(stack);
-		stack->max.size++;
+		stack->origin_max.size++;
+		stack->origin_max.location = BOTTOM_A;
 		// printf("\n");
 		// printf("[%d]\n", stack->max.size);
 		// printf("\n");
@@ -77,7 +83,7 @@ void	apply_split_chunk(t_container *stack, t_split *split)
 
 void	compare_split(int *data, int argc, t_container *stack, t_split *split)
 {
-	split = innit_chunk(argc, split);
+	split = innit_chunk(argc, stack, split);
 	split->i = 0;
 	while (split->i < split->size)
 	{
@@ -92,11 +98,11 @@ void	compare_split(int *data, int argc, t_container *stack, t_split *split)
 		apply_split_chunk(stack, split);
 		split->i++;
 	}
-	if (stack->max.size != 0)
-		stack->max.location = BOTTOM_A;
-	else if (stack->mid.size != 0)
-		stack->mid.location = TOP_B;
-	else if (stack->min.size != 0)
-		stack->min.location = BOTTOM_B;
+	// if (stack->max.size != 0)
+	// 	stack->max.location = BOTTOM_A;
+	// else if (stack->mid.size != 0)
+	// 	stack->mid.location = TOP_B;
+	// else if (stack->min.size != 0)
+	// 	stack->min.location = BOTTOM_B;
 }
 
