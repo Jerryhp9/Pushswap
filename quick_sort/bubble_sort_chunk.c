@@ -12,18 +12,30 @@
 
 #include "../pushswap.h"
 
-int	*index_nodes(int *data, int argc, char **argv)
+long	*index_data(long *data, int argc, char **argv)
+{
+	int		count;
+	
+
+	count = 0;
+	data = parse_long(argc, argv, &count);
+	if (!data)
+		exit(1);
+	data = index_nodes(data, count);
+	return (data);
+}
+
+long	*index_nodes(long *data, int count)
 {
 	int	i;
 	int	j;
 	int	temp;
-	(void)argv;
 
 	i = 0;
-	while (i < argc - 1)
+	while (i < count)
 	{
 		j = 0;
-		while (j < argc - 2 - i)
+		while (j < count - 1 - i)
 		{
 			if (data[j] > data[j + 1])
 			{

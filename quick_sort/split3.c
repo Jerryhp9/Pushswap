@@ -12,49 +12,79 @@
 
 #include "../pushswap.h"
 
-t_split	*innit_chunk(int argc, t_container *stack, t_split *split)
+t_split	*innit_chunk(int argc, t_split *split)
 {
 	split->size = argc - 1;
 	split->pivot1 = split->size / 3;
 	split->pivot2 = 2 * split->size / 3;
-	stack->origin_max.size = 0;
-	stack->origin_mid.size = 0;
-	stack->origin_min.size = 0;
-
+	
 	return (split);
 }
 
-void	apply_split_chunk(t_container *stack, t_split *split)
+t_chunk origin_size(t_container *stack)
 {
-	if (split->rank > split->pivot1 && split->rank <= split->pivot2)
+	nodes *ptr;
+
+	ptr = NULL;
+	ptr = stack->pstk_a;
+	stack->origin_chunk.size = 0;
+	stack->origin_chunk.location = TOP_A;
+	while (ptr != NULL)
 	{
-		push_b(stack);
-		stack->origin_mid.size++;
-		stack->origin_mid.location = TOP_B;
-		// printf("\n");
-		// printf("|%d|\n", stack->mid.size);
-		// printf("\n");
+		stack->origin_chunk.size++;
+		ptr = ptr->next_link;
 	}
-	else if (split->rank <= split->pivot1)
-	{
-		push_b(stack);
-		rotate_b(stack);
-		stack->origin_min.size++;
-		stack->origin_min.location = BOTTOM_B;
-		// printf("\n");
-		// printf("-%d-\n", stack->min.size);
-		// printf("\n");
-	}
-	else if (split->rank > split->pivot2)
-	{
-		rotate_a(stack);
-		stack->origin_max.size++;
-		stack->origin_max.location = BOTTOM_A;
-		// printf("\n");
-		// printf("[%d]\n", stack->max.size);
-		// printf("\n");
-	}
+	return (stack->origin_chunk);
 }
+
+// t_container	*innit_stack(t_container *stack, t_split *split)
+// {
+// 	stack->origin_mid.size = 0;
+// 	stack->origin_min.size = 0;
+// 	stack->a_counter = split->size;
+// 	stack->b_counter = 0;
+// 	stack->origin_max.location = 0;
+// 	stack->origin_mid.location = 0;
+// 	stack->origin_min.location = 0;
+// 	return (stack);
+// }
+
+// t_container *apply_split_chunk(t_container *stack, t_split *split)
+// {
+// 	if (split->rank > split->pivot1 && split->rank <= split->pivot2)
+// 	{
+// 		push_b(stack);
+// 		stack->origin_mid.size++;
+// 		stack->origin_mid.location = TOP_B;
+// 		stack->b_counter++;
+// 		stack->a_counter--;
+// 		// printf("\n");
+// 		// printf("|%d|\n", stack->mid.size);
+// 		// printf("\n");
+// 	}
+// 	else if (split->rank <= split->pivot1)
+// 	{
+// 		push_b(stack);
+// 		rotate_b(stack);
+// 		stack->origin_min.size++;
+// 		stack->origin_min.location = BOTTOM_B;
+// 		stack->b_counter++;
+// 		stack->a_counter--;
+// 		// printf("\n");
+// 		// printf("-%d-\n", stack->min.size);
+// 		// printf("\n");
+// 	}
+// 	else if (split->rank > split->pivot2)
+// 	{
+// 		rotate_a(stack);
+// 		stack->origin_max.size++;
+// 		stack->origin_max.location = BOTTOM_A;
+// 		// printf("\n");
+// 		// printf("[%d]\n", stack->max.size);
+// 		// printf("\n");
+// 	}
+// 	return (stack);
+// }
 
 // void	locate_chunk(t_container *stack)
 // {
@@ -81,28 +111,31 @@ void	apply_split_chunk(t_container *stack, t_split *split)
 // 	}
 // }
 
-void	compare_split(int *data, int argc, t_container *stack, t_split *split)
-{
-	split = innit_chunk(argc, stack, split);
-	split->i = 0;
-	while (split->i < split->size)
-	{
-		split->val = stack->pstk_a->data;
-		split->rank = 0;
-		while (split->rank < split->size)
-		{
-			if (data[split->rank] == split->val)
-				break;
-			split->rank++;
-		}
-		apply_split_chunk(stack, split);
-		split->i++;
-	}
-	// if (stack->max.size != 0)
-	// 	stack->max.location = BOTTOM_A;
-	// else if (stack->mid.size != 0)
-	// 	stack->mid.location = TOP_B;
-	// else if (stack->min.size != 0)
-	// 	stack->min.location = BOTTOM_B;
-}
+// void	compare_split(int *data, int argc, t_container *stack, t_split *split)
+// {
+// 	split = innit_chunk(argc, stack, split);
+// 	stack = innit_stack(stack, split);
+// 	// printf("chunk location is %d\n", stack->origin_max.location);
+// 	split->i = 0;
+// 	while (split->i < split->size)
+// 	{
+// 		split->val = stack->pstk_a->data;
+// 		split->rank = 0;
+// 		while (split->rank < split->size)
+// 		{
+// 			if (data[split->rank] == split->val)
+// 				break;
+// 			split->rank++;
+// 		}
+// 		stack = apply_split_chunk(stack, split);
+// 		split->i++;
+// 	}
+// 	// if (stack->max.size != 0)
+// 	// 	stack->max.location = BOTTOM_A;
+// 	// else if (stack->mid.size != 0)
+// 	// 	stack->mid.location = TOP_B;
+// 	// else if (stack->min.size != 0)
+// 	// 	stack->min.location = BOTTOM_B;
+// }
+
 

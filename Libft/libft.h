@@ -6,7 +6,7 @@
 /*   By: jhor <jhor@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:28:24 by jhor              #+#    #+#             */
-/*   Updated: 2025/05/13 18:11:36 by jhor             ###   ########.fr       */
+/*   Updated: 2025/07/10 14:29:46 by jhor             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct typenodes {
 } nodes;
 
 int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t n, size_t s);
 int		ft_isalnum(int c);

@@ -14,19 +14,26 @@
 
 void swap_a(t_container *stack)
 {
-	nodes *temp;
-	nodes *temp2;
+	nodes *first;
+	nodes *second;
+	nodes *third;
 
-	temp2 = NULL;
-	temp = stack->pstk_a;
+	second = NULL;
 	if (!stack->pstk_a || stack->pstk_a->next_link == NULL)
 		return;
-	stack->pstk_a = stack->pstk_a->next_link;
-	temp2 = stack->pstk_a->next_link;
-	stack->pstk_a->next_link = temp;
-	stack->pstk_a->prev_link = NULL;
-	temp->prev_link = stack->pstk_a;
-	temp->next_link = temp2;
+	first = stack->pstk_a;
+	first = first->next_link;
+	second = stack->pstk_a;
+	third = first->next_link;
+
+	first->next_link = second;
+	second->prev_link = first;
+	second->next_link = third;
+	third->prev_link = second;
+	first->prev_link = NULL;
+
+	stack->pstk_a = first;
+
 	if (stack->is_combine == 0)
 		printf("sa\n");
 }

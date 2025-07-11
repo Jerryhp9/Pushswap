@@ -36,14 +36,12 @@ typedef struct s_container {
 	nodes *pstk_a;
 	nodes *pstk_b;
 	int is_combine;
+	int a_counter;
+	int b_counter;
 	t_chunk	min;
 	t_chunk	mid;
 	t_chunk	max;
-	t_chunk origin_mid;
-	t_chunk origin_min;
-	t_chunk origin_max;
-	nodes	*middle;
-	nodes	*last;
+	t_chunk origin_chunk;
 } t_container;
 
 
@@ -64,9 +62,17 @@ typedef struct s_split {
 	int pivotB;
 } t_split;
 
+typedef struct s_parse {
+	long	*data;
+	char	*joined;
+	char	**tokens;
+	int		count;
+	int		i;
+} t_parse;
+
 int			ft_atoi(const char *str);
-nodes		*command_nodes(int *data, int argc, char **argv);
-void		last_node(nodes **head, int data);
+nodes		*command_nodes(long *data, int argc, char **argv);
+void		last_node(nodes *head, int data);
 void		swap_a(t_container *stack);
 void		swap_b(t_container *stack);
 void		swap_s(t_container *stack);
@@ -80,6 +86,7 @@ void		push_a(t_container *stack);
 void		push_b(t_container *stack);
 void		print_content(void *content);
 void		sort2(t_container *stack);
+void		n_sort3(t_container *stack);
 void		sort3(t_container *stack);
 void		sort5(t_container *stack);
 nodes		*find_min(nodes *pmin, t_container *stack);
@@ -90,10 +97,12 @@ void		position_b(int position, t_container *stack);
 void		free_data(int *data);
 void		free_nodes(nodes *head);
 t_container	init (nodes *stk_a, nodes *stk_b);
-int			*index_nodes(int *data, int argc, char **argv);
-t_split		*innit_chunk(int argc, t_container *stack, t_split *split);
+long		*index_data(long *data, int argc, char **argv);
+long		*index_nodes(long *data, int count);
+t_split		*innit_chunk(int argc, t_split *split);
+t_container	*innit_stack(t_container *stack, t_split *split);
 void		compare_split(int *data, int argc, t_container *stack, t_split *split);
-void		apply_split_chunk(t_container *stack, t_split *split);
+t_container	*apply_split_chunk(t_container *stack, t_split *split);
 void		TopA_sender(t_container *stack, t_chunk *chunk, t_split *split);
 void		BotA_sender(t_container *stack, t_chunk *chunk, t_split *split);
 void		TopB_sender(t_container *stack, t_chunk *chunk, t_split *split);
@@ -108,7 +117,14 @@ nodes 		*find_start_node(t_container *stack, t_chunk *chunk);
 int			find_max_int(int *data, t_chunk *chunk);
 int			find_min_int(int *data, t_chunk *chunk);
 t_chunk		*innit_chunk_recurse(t_chunk *chunk);
-// void		chunk_checker(t_container *stack);
+void		innit_chunk_proper(t_container *stack);
+int			invalid_argument(char *token);
+int			exceed_int(long *data, int count);
+int			duplicate(long *data, int count);
+long 		*parse_long(int argc, char **argv, int *counter);
+void		free_fail(long *data, char *joined, char **tokens);
+t_chunk 	origin_size(t_container *stack);
+// voidchunk_checker(t_container *stack);
 // void		locate_chunk(t_container *stack);
 // const char	*get_location_name(enum e_loc loc);
 

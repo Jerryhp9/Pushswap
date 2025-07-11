@@ -24,7 +24,8 @@ nodes *create_nodes(nodes *head, int data)
 	head = temp;
 	return (head);
 }
-void	last_node(nodes **head, int data)
+
+void	last_node(nodes *head, int data)
 {
 	nodes *temp;
 	nodes *tp;
@@ -34,7 +35,7 @@ void	last_node(nodes **head, int data)
 	temp->prev_link = NULL;
 	temp->data = data;
 	temp->next_link = NULL;
-	tp = *head;
+	tp = head;
 	while(tp->next_link != NULL)
 		tp = tp->next_link;
 	temp->prev_link = tp;
@@ -46,81 +47,111 @@ void	last_node(nodes **head, int data)
 	// return (*head);
 }
 
-int *convert_int(int argc, char **argv)
-{
-	int	i;
-	int	j;
-	int *data;
+// int *convert_int(int argc, char **argv)
+// {
+// 	int	i;
+// 	int	j;
+// 	int *data;
 
-	i = 1;
-	j = 0;
-	data = malloc(sizeof(int) * (argc - 1));
-	if (!data)
-		return NULL;
-	while (i < argc)
+// 	i = 1;
+// 	j = 0;
+// 	data = malloc(sizeof(int) * (argc - 1));
+// 	if (!data)
+// 		return NULL;
+// 	while (i < argc)
+// 	{
+// 		data[j] = ft_atoi(argv[i]);
+// 		i++;
+// 		j++;
+// 	}
+// 	return (data);
+// }
+
+void	fail_data(long *data, int count)
+{
+	if (exceed_int(data, count))
 	{
-		data[j] = ft_atoi(argv[i]);
-		i++;
-		j++;
+		free(data);
+		exit(1);
 	}
-	return (data);
 }
 
-nodes	*command_nodes(int *data, int argc, char **argv)
+nodes	*command_nodes(long *data, int argc, char **argv)
 {
 	nodes	*head;
-	// nodes	*body;
 	int		i;
+	int		count;
 
 	head = NULL;
 	i = 1;
 	if (argc < 2)
 		return (0);
-	data = convert_int(argc, argv);
+	data = parse_long(argc, argv, &count);
+	fail_data(data, count);
 	if (!data)
 		return (0);
-	// (void)argc;
-	// if (argv[1])
-	head = create_nodes(head, data[0]);
-	// body = head;
-	while (i < argc - 1)
+	if (duplicate(data, count))
 	{
-		last_node(&head, data[i]);
+		free(data);
+		exit(1);
+	}
+	head = create_nodes(head, data[0]);
+	while (i < count)
+	{
+		last_node(head, data[i]);
 		i++;
 	}
 	free(data);
-	// body = NULL;
 	return (head);
 }
 
+// int main(int argc, char **argv)
+// {
+// 	nodes *head;
+
+// 	head = NULL;
+// 	long *data = {0};
+// 	head = command_nodes(data, argc, argv);
+// 	ft_lstiter(head, print_content);
+// 	free_nodes(head);
+// }
 
 int main(int argc, char **argv)
 {
-	int			*data;
+	long		*data;
 	nodes		*stk_a;
 	nodes		*stk_b;
 	// int			size;
 	// int i = 0;
 	// nodes		*pmin;
 	t_container	stack;
-	t_split		split;
+	// t_split		split;
 	// nodes		*start;
 	// t_chunk		chunk;
-
+	
+	if (argc == 1)
+		return (0);
 	data = 0;
 	stk_b = NULL;
-	// printf("address of origin_max %p\n", &stack.origin_max);
 	// pmin = NULL;
 	stk_a = command_nodes(data, argc, argv);
-	stack = init(stk_a, stk_b); //understand the flow of the struct stack
-	data = convert_int(argc, argv);
-	data = index_nodes(data, argc, argv);
+	stack = init(stk_a, stk_b); //TODO: understand the flow of the struct stack
+	data = index_data(data, argc, argv);
+	printf("%ld\n", data[0]);
+	printf("%ld\n", data[1]);
+	printf("%ld\n", data[2]);
+	printf("%ld\n", data[3]);
+	printf("%ld\n", data[4]);
+	printf("%ld\n", data[5]);
+	printf("%ld\n", data[6]);
+	printf("%ld\n", data[7]);
+	innit_chunk_proper(&stack);
 	// while (i < argc - 1)
 	// {
 	// 	printf("%d\n", data[i]);
 	// 	i++;
 	// }
-	compare_split(data, argc, &stack, &split);
+	// compare_split(data, argc, &stack, &split);
 	// ft_lstiter(stack.pstk_a, print_content);
 	// printf("\n");
 	// ft_lstiter(stack.pstk_b, print_content);
@@ -128,9 +159,15 @@ int main(int argc, char **argv)
 	// if (stack.max.location == TOP_A)
 	// 	printf("Hello");
 	// start = find_start_node(&stack, &stack.max);
-	quick_sort(&stack, &stack.origin_max, &split);
-	quick_sort(&stack, &stack.origin_mid, &split);
-	quick_sort(&stack, &stack.origin_min, &split);
+	// if (stack.a_counter == 3)
+	// 	n_sort3(&stack); //!uncomment later
+	// if (stack.a_counter == 5)
+	// 	sort5(&stack); //!uncomment later
+	// printf("chunk location is +%d+\n", stack.origin_max.location);
+	stack.origin_chunk = origin_size(&stack);
+	printf("the size is %d\n", stack.origin_chunk.size);
+	printf("the location is %d\n", stack.origin_chunk.location);
+	// quick_sort(&stack, &stack.origin_chunk, &split); //!uncomment later
 	// ft_lstiter(stack.pstk_a, print_content);
 	// printf("\n");
 	// ft_lstiter(stack.pstk_b, print_content);

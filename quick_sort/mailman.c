@@ -23,21 +23,29 @@ void	TopA_sender(t_container *stack, t_chunk *chunk, t_split *split)
 			rotate_b(stack);
 			chunk->min_count++;
 			stack->min.location = BOTTOM_B;
+			stack->b_counter++;
+			stack->a_counter--;
+			// printf("current min stack is %d\n", stack->min.location);
 		}
 		else if (split->rank > split->pivotS && split->rank <= split->pivotB)
 		{
 			push_b(stack);
 			chunk->mid_count++;
 			stack->mid.location = TOP_B;
+			stack->b_counter++;
+			stack->a_counter--;
+			// printf("current mid stack is %d\n", stack->mid.location);
 		}
 		else if (split->rank > split->pivotB)
 		{
 			rotate_a(stack);
 			chunk->max_count++;
 			stack->max.location = BOTTOM_A;
+			// printf("current max stack is %d\n", stack->max.location);
 		}
 	}
 }
+
 void	BotA_sender(t_container *stack, t_chunk *chunk, t_split *split)
 {
 	if (chunk->location == BOTTOM_A)
@@ -49,6 +57,9 @@ void	BotA_sender(t_container *stack, t_chunk *chunk, t_split *split)
 			rotate_b(stack);
 			chunk->min_count++;
 			stack->min.location = BOTTOM_B;
+			stack->b_counter++;
+			stack->a_counter--;
+			// printf("current min stack is %d\n", stack->min.location);
 		}
 		else if (split->rank > split->pivotS && split->rank <= split->pivotB)
 		{
@@ -56,12 +67,16 @@ void	BotA_sender(t_container *stack, t_chunk *chunk, t_split *split)
 			push_b(stack);
 			chunk->mid_count++;
 			stack->mid.location = TOP_B;
+			stack->b_counter++;
+			stack->a_counter--;
+			// printf("current mid stack is %d\n", stack->mid.location);
 		}
 		else if (split->rank > split->pivotB)
 		{
 			r_rotate_a(stack);
 			chunk->max_count++;
 			stack->max.location = TOP_A;
+			// printf("current max stack is %d\n", stack->max.location);
 		}
 	}
 }
@@ -75,6 +90,7 @@ void	TopB_sender(t_container *stack, t_chunk *chunk, t_split *split)
 			rotate_b(stack);
 			chunk->min_count++;
 			stack->min.location = BOTTOM_B;
+			// printf("current min stack is %d\n", stack->min.location);
 		}
 		else if (split->rank > split->pivotS && split->rank <= split->pivotB)
 		{
@@ -82,12 +98,18 @@ void	TopB_sender(t_container *stack, t_chunk *chunk, t_split *split)
 			rotate_a(stack);
 			chunk->mid_count++;
 			stack->mid.location = BOTTOM_A;
+			stack->a_counter++;
+			stack->b_counter--;
+			// printf("current mid stack is %d\n", stack->mid.location);
 		}
 		else if (split->rank > split->pivotB)
 		{
 			push_a(stack);
 			chunk->max_count++;
 			stack->max.location = TOP_A;
+			stack->a_counter++;
+			stack->b_counter--;
+			// printf("current max stack is %d\n", stack->max.location);
 		}
 	}
 }
@@ -101,6 +123,7 @@ void	BotB_sender(t_container *stack, t_chunk *chunk, t_split *split)
 			r_rotate_b(stack);
 			chunk->min_count++;
 			stack->min.location = TOP_B;
+			// printf("current min stack is %d\n", stack->min.location);
 		}
 		else if (split->rank > split->pivotS && split->rank <= split->pivotB)
 		{
@@ -109,6 +132,9 @@ void	BotB_sender(t_container *stack, t_chunk *chunk, t_split *split)
 			rotate_a(stack);
 			chunk->mid_count++;
 			stack->mid.location = BOTTOM_A;
+			stack->a_counter++;
+			stack->b_counter--;
+			// printf("current mid stack is %d\n", stack->mid.location);
 		}
 		else if (split->rank > split->pivotB)
 		{
@@ -116,6 +142,9 @@ void	BotB_sender(t_container *stack, t_chunk *chunk, t_split *split)
 			push_a(stack);
 			chunk->max_count++;
 			stack->max.location = TOP_A;
+			stack->a_counter++;
+			stack->b_counter--;
+			// printf("current max stack is %d\n", stack->max.location);
 		} 
 	}
 }
