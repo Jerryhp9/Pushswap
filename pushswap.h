@@ -53,9 +53,6 @@ typedef struct s_container {
 
 typedef struct s_split {
 	int	size;
-	int	pivot1;
-	int	pivot2;
-	int	i;
 	int	rank;
 	int	val;
 	int	pivotS;
@@ -99,7 +96,6 @@ void		free_nodes(nodes *head);
 t_container	init (nodes *stk_a, nodes *stk_b);
 long		*index_data(long *data, int argc, char **argv);
 long		*index_nodes(long *data, int count);
-t_split		*innit_chunk(int argc, t_split *split);
 t_container	*innit_stack(t_container *stack, t_split *split);
 void		compare_split(int *data, int argc, t_container *stack, t_split *split);
 t_container	*apply_split_chunk(t_container *stack, t_split *split);
@@ -124,6 +120,7 @@ int			duplicate(long *data, int count);
 long 		*parse_long(int argc, char **argv, int *counter);
 void		free_fail(long *data, char *joined, char **tokens);
 t_chunk 	origin_size(t_container *stack);
+t_split		*innit_sorted(t_split *split);
 // voidchunk_checker(t_container *stack);
 // void		locate_chunk(t_container *stack);
 // const char	*get_location_name(enum e_loc loc);

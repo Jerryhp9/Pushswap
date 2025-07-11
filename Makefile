@@ -18,15 +18,15 @@ RM = rm -f
 LIBFT_DIR = Libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
-SRC = struct.c hfunction/pushswap_utils.c operations/swap_a.c \
+SRC = parsing/struct.c hfunction/pushswap_utils.c operations/swap_a.c \
 operations/rotate_a.c operations/r_rotate_a.c operations/push_b.c \
 operations/swap_b.c operations/rotate_b.c operations/r_rotate_b.c \
 operations/push_a.c operations/swap_s.c operations/r_rotate_r.c \
 operations/rotate_r.c quick_sort/sort3.c quick_sort/sort5.c \
 quick_sort/bubble_sort_chunk.c quick_sort/split3.c \
 quick_sort/mailman.c quick_sort/quick_sort.c quick_sort/sort_top3.c \
-quick_sort/chunk_data_presort.c quick_sort/sort2.c error.c \
-parse.c
+quick_sort/chunk_data_presort.c quick_sort/sort2.c parsing/error.c \
+parsing/parse.c
 
 OBJ = $(SRC:.c=.o)
 

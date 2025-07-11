@@ -12,15 +12,6 @@
 
 #include "../pushswap.h"
 
-t_split	*innit_chunk(int argc, t_split *split)
-{
-	split->size = argc - 1;
-	split->pivot1 = split->size / 3;
-	split->pivot2 = 2 * split->size / 3;
-	
-	return (split);
-}
-
 t_chunk origin_size(t_container *stack)
 {
 	nodes *ptr;
@@ -37,17 +28,6 @@ t_chunk origin_size(t_container *stack)
 	return (stack->origin_chunk);
 }
 
-// t_container	*innit_stack(t_container *stack, t_split *split)
-// {
-// 	stack->origin_mid.size = 0;
-// 	stack->origin_min.size = 0;
-// 	stack->a_counter = split->size;
-// 	stack->b_counter = 0;
-// 	stack->origin_max.location = 0;
-// 	stack->origin_mid.location = 0;
-// 	stack->origin_min.location = 0;
-// 	return (stack);
-// }
 
 // t_container *apply_split_chunk(t_container *stack, t_split *split)
 // {

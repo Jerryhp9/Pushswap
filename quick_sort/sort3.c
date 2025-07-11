@@ -57,7 +57,7 @@ void	n_sort3(t_container *stack)
 	{
 		swap_a(stack);
 		return;
-	}	
+	}
 	else if (stack->pstk_a->data < middle->data && stack->pstk_a->data > last->data)
 	{
 		r_rotate_a(stack);
