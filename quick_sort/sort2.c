@@ -18,6 +18,6 @@ void	sort2(t_container *stack)
 
 	temp = NULL;
 	temp = stack->pstk_a->next_link;
-	if (stack->pstk_a > temp)
+	if (stack->pstk_a->data > temp->data)
 		swap_a(stack);
 }

@@ -12,6 +12,22 @@
 
 #include "../pushswap.h"
 
+// void	sort5(t_container *stack)
+// {
+// 	nodes	*temp;
+// 	int		size;
+
+// 	temp = NULL;
+// 	temp = stack->pstk_a;
+// 	size = 2;
+// 	while (size != 0)
+// 	{
+// 		push_b(stack);
+// 		size--;
+// 	}
+// 	n_sort3(stack);
+// }
+
 int	move_top(int position, nodes *ptr, t_container *stack)
 {
 	nodes	*temp;
@@ -138,7 +154,7 @@ void	sort5(t_container *stack)
 	position = move_top(position, max, stack);
 	position_b(position, stack);
 	temp = stack->pstk_b->next_link;
-	sort3(stack);
+	n_sort3(stack);
 	if (stack->pstk_b->data > temp->data)
 		swap_b(stack);
 	push_a(stack);

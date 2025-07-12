@@ -164,18 +164,18 @@ int main(int argc, char **argv)
 	// 	n_sort3(&stack); //!uncomment later
 	// if (stack.a_counter == 5)
 	// 	sort5(&stack); //!uncomment later
-	printf("what is the counter a %d\n", stack.a_counter);
+	// printf("what is the counter a %d\n", stack.a_counter);
 	// stack.origin_chunk = origin_size(&stack);
-	printf("the size is %d\n", stack.origin_chunk.size);
-	printf("the location is %d\n", stack.origin_chunk.location);
-	printf("counter a is %d\n", stack.a_counter);
+	// printf("the size is %d\n", stack.origin_chunk.size);
+	// printf("the location is %d\n", stack.origin_chunk.location);
+	// printf("counter a is %d\n", stack.a_counter);
 	quick_sort(&stack, &stack.origin_chunk, &split); //!uncomment later
 	ft_lstiter(stack.pstk_a, print_content);
 	printf("\n");
-	ft_lstiter(stack.pstk_b, print_content);
-	printf("\n");
+	// ft_lstiter(stack.pstk_b, print_content);
+	// printf("\n");
 	free_nodes(stack.pstk_a);
-	free_nodes(stack.pstk_b);
+	// free_nodes(stack.pstk_b);
 	free(data);
 	return (0);
 }

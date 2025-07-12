@@ -24,8 +24,6 @@ void	sender(t_container *stack, t_chunk *chunk)
 		else if (chunk->location == TOP_B)
 		{
 			push_a(stack);
-			stack->a_counter++;
-			stack->b_counter--;
 			// chunk->location = TOP_A;
 		}
 		else if (chunk->location == BOTTOM_B)
@@ -33,8 +31,6 @@ void	sender(t_container *stack, t_chunk *chunk)
 			if (stack->pstk_b->next_link != NULL)
 				r_rotate_b(stack);
 			push_a(stack);
-			stack->a_counter++;
-			stack->b_counter--;
 			// chunk->location = TOP_A;
 		}
 		chunk->size--;
@@ -59,10 +55,10 @@ void	send_top_sort(t_container *stack, t_chunk *chunk)
 		chunk->location = TOP_A;
 		temp = find_start_node(stack, chunk);
 		temp2 = temp->next_link;
-		// printf("head of stack a is %d\n", temp->data); //! commented out
-		// printf("second node of stack a is %d\n", temp2->data);
-		// ft_lstiter(stack->pstk_a, print_content); //! what are the head node and second node
-		// printf("\n");
+		printf("head of stack a is %d\n", temp->data); //! commented out
+		printf("second node of stack a is %d\n", temp2->data);
+		ft_lstiter(stack->pstk_a, print_content); //! what are the head node and second node
+		printf("\n");
 		if (temp->data > temp2->data && chunk->location == TOP_A)
 			swap_a(stack);
 	}

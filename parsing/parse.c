@@ -28,12 +28,12 @@ char *join_args(int argc, char **argv)
 	int		i;
 
 	join = ft_strdup("");
-	printf("string :%s\n", join);
+	// printf("string :%s\n", join);
 	i = 1;
 	while (i < argc)
 	{
 		join = ft_strjoin_free(join, argv[i]);
-		printf("string :%s\n", join);
+		// printf("string :%s\n", join);
 		join = ft_strjoin_free(join, " ");
 		i++;
 	}
@@ -94,10 +94,10 @@ long *parse_long(int argc, char **argv, int *counter)
 	int		count;
 	int		i;
 	
-	// data = 0;
-	// joined = NULL;
-	// tokens = NULL;
-	// count = 0;
+	data = 0;
+	joined = NULL;
+	tokens = NULL;
+	count = 0;
 	i = 0;
 	joined = join_args(argc, argv);
 	tokens = ft_split(joined, ' ');
