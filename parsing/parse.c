@@ -28,12 +28,10 @@ char *join_args(int argc, char **argv)
 	int		i;
 
 	join = ft_strdup("");
-	// printf("string :%s\n", join);
 	i = 1;
 	while (i < argc)
 	{
 		join = ft_strjoin_free(join, argv[i]);
-		// printf("string :%s\n", join);
 		join = ft_strjoin_free(join, " ");
 		i++;
 	}
@@ -75,16 +73,6 @@ void	free_fail(long *data, char *joined, char **tokens)
 	free(data);
 }
 
-// t_parse	innit_parse(t_parse parse)
-// {
-// 	parse.data = 0;
-// 	parse.joined = NULL;
-// 	parse.tokens = NULL;
-// 	parse.count = 0;
-// 	parse.i = 0;
-
-// 	return (parse);
-// }
 
 long *parse_long(int argc, char **argv, int *counter)
 {
@@ -118,14 +106,3 @@ long *parse_long(int argc, char **argv, int *counter)
 	free_tokens(tokens);
 	return (data);
 }
-
-
-
-
-// int main(int argc, char **argv)
-// {
-// 	int *data;
-// 	data = parse_int(argc, argv);
-// 	printf("in int main %d\n", data[0]);
-// 	free(data);
-// }

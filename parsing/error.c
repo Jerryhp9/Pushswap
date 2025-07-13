@@ -17,13 +17,13 @@ int	invalid_argument(char *token)
 	int	i;
 	
 	i = 0;
-	if (token[i] == '-')
+	if (token[i] == '-' && (token[i + 1] >= '0' && token[i + 1] <= '9'))
 		i++;
 	while (token[i])
 	{
 		if (token[i] < '0' || token[i] > '9')
 		{
-			printf("Error\n");
+			ft_putstr_fd("Error\n", 2);
 			return (1);
 		}
 		i++;
@@ -40,7 +40,7 @@ int	exceed_int(long *data, int count)
 	{
 		if (data[i] > INT_MAX || data[i] < INT_MIN)
 		{
-			printf("Error\n");
+			ft_putstr_fd("Error\n", 2);
 			return (1);
 		}
 		i++;
@@ -66,7 +66,7 @@ int	duplicate(long *data, int count)
 		{
 			if (data[j] == data[i])
 			{
-				printf("Error\n");
+				ft_putstr_fd("Error\n", 2);
 				return (1);
 			}
 			first = 0;

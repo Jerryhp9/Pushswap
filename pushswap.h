@@ -45,13 +45,6 @@ typedef struct s_container {
 	t_chunk origin_chunk;
 } t_container;
 
-
-// typedef struct s_cato {
-// 	t_chunk	min;
-// 	t_chunk	mid;
-// 	t_chunk	max;
-// } t_cato;
-
 typedef struct s_split {
 	int	size;
 	int	rank;
@@ -122,8 +115,5 @@ long 		*parse_long(int argc, char **argv, int *counter);
 void		free_fail(long *data, char *joined, char **tokens);
 t_chunk 	origin_size(t_container *stack);
 t_split		*innit_sorted(t_split *split);
-// voidchunk_checker(t_container *stack);
-// void		locate_chunk(t_container *stack);
-// const char	*get_location_name(enum e_loc loc);
 
 #endif

@@ -35,11 +35,6 @@ void	n_sort3(t_container *stack)
 
 	middle = stack->pstk_a->next_link;
 	last = middle->next_link;
-	// printf("head node in stack A is %d\n", stack->pstk_a->data); //! head node in stack A
-	// printf("second node in stack A is %d\n", middle->data);
-	// printf("third node in stack A is %d\n", last->data);
-	// ft_lstiter(stack->pstk_a, print_content);
-	// printf("\n");
 	if (stack->pstk_a->data < middle->data && middle->data < last->data)
 		return;
 	else if (stack->pstk_a->data > middle->data && stack->pstk_a->data > last->data)
@@ -78,11 +73,6 @@ void	sort3(t_container *stack)
 
 	middle = stack->pstk_a->next_link;
 	last = middle->next_link;
-	// printf("head node in stack A is %d\n", stack->pstk_a->data); //! head node in stack A
-	// printf("second node in stack A is %d\n", middle->data);
-	// printf("third node in stack A is %d\n", last->data);
-	// ft_lstiter(stack->pstk_a, print_content);
-	// printf("\n");
 	if (stack->pstk_a->data < middle->data && middle->data < last->data)
 		return;
 	else if (stack->pstk_a->data < middle->data && stack->pstk_a->data < last->data)

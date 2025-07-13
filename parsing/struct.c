@@ -40,32 +40,7 @@ void	last_node(nodes *head, int data)
 		tp = tp->next_link;
 	temp->prev_link = tp;
 	tp->next_link = temp;
-	// tp = head->next_link;
-	// temp->prev_link = tp;
-	// tp = head;
-	// temp = NULL;
-	// return (*head);
 }
-
-// int *convert_int(int argc, char **argv)
-// {
-// 	int	i;
-// 	int	j;
-// 	int *data;
-
-// 	i = 1;
-// 	j = 0;
-// 	data = malloc(sizeof(int) * (argc - 1));
-// 	if (!data)
-// 		return NULL;
-// 	while (i < argc)
-// 	{
-// 		data[j] = ft_atoi(argv[i]);
-// 		i++;
-// 		j++;
-// 	}
-// 	return (data);
-// }
 
 void	fail_data(long *data, int count)
 {
@@ -105,77 +80,31 @@ nodes	*command_nodes(long *data, int argc, char **argv)
 	return (head);
 }
 
-// int main(int argc, char **argv)
-// {
-// 	nodes *head;
-
-// 	head = NULL;
-// 	long *data = {0};
-// 	head = command_nodes(data, argc, argv);
-// 	ft_lstiter(head, print_content);
-// 	free_nodes(head);
-// }
-
 int main(int argc, char **argv)
 {
 	long		*data;
 	nodes		*stk_a;
 	nodes		*stk_b;
-	// int			size;
-	// int i = 0;
-	// nodes		*pmin;
 	t_container	stack;
 	t_split		split;
-	// nodes		*start;
 	t_chunk		chunk;
 	
 	if (argc == 1)
 		return (0);
+	if (argv[1][0] == '\0')
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (1);
+	}
 	data = 0;
 	stk_b = NULL;
-	// pmin = NULL;
 	stk_a = command_nodes(data, argc, argv);
 	stack = init(stk_a, stk_b); //TODO: understand the flow of the struct stack
 	data = index_data(data, argc, argv);
-	// printf("%ld\n", data[0]);
-	// printf("%ld\n", data[1]);
-	// printf("%ld\n", data[2]);
-	// printf("%ld\n", data[3]);
-	// printf("%ld\n", data[4]);
-	// printf("%ld\n", data[5]);
-	// printf("%ld\n", data[6]);
-	// printf("%ld\n", data[7]);
 	chunk = origin_size(&stack);
 	innit_chunk_proper(&stack);
-	// while (i < argc - 1)
-	// {
-	// 	printf("%d\n", data[i]);
-	// 	i++;
-	// }
-	// compare_split(data, argc, &stack, &split);
-	// ft_lstiter(stack.pstk_a, print_content);
-	// printf("\n");
-	// ft_lstiter(stack.pstk_b, print_content);
-	// printf("\n");
-	// if (stack.max.location == TOP_A)
-	// 	printf("Hello");
-	// start = find_start_node(&stack, &stack.max);
-	// if (stack.a_counter == 3)
-	// 	n_sort3(&stack); //!uncomment later
-	// if (stack.a_counter == 5)
-	// 	sort5(&stack); //!uncomment later
-	// printf("what is the counter a %d\n", stack.a_counter);
-	// stack.origin_chunk = origin_size(&stack);
-	// printf("the size is %d\n", stack.origin_chunk.size);
-	// printf("the location is %d\n", stack.origin_chunk.location);
-	// printf("counter a is %d\n", stack.a_counter);
 	quick_sort(&stack, &stack.origin_chunk, &split); //!uncomment later
-	// ft_lstiter(stack.pstk_a, print_content);
-	// printf("\n");
-	// ft_lstiter(stack.pstk_b, print_content);
-	// printf("\n");
 	free_nodes(stack.pstk_a);
-	// free_nodes(stack.pstk_b);
 	free(data);
 	return (0);
 }
