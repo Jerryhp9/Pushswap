@@ -30,7 +30,7 @@ void	free_data(int *data)
 		free(data + i);
 		i++;
 	}
-	printf("\n");
+	// printf("\n");
 }
 
 void	free_nodes(nodes *head)

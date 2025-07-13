@@ -17,10 +17,10 @@ int	invalid_argument(char *token)
 	int	i;
 	
 	i = 0;
+	if (token[i] == '-')
+		i++;
 	while (token[i])
 	{
-		if (token[i] == '-')
-			i++;
 		if (token[i] < '0' || token[i] > '9')
 		{
 			printf("Error\n");

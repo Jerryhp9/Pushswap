@@ -170,8 +170,8 @@ int main(int argc, char **argv)
 	// printf("the location is %d\n", stack.origin_chunk.location);
 	// printf("counter a is %d\n", stack.a_counter);
 	quick_sort(&stack, &stack.origin_chunk, &split); //!uncomment later
-	ft_lstiter(stack.pstk_a, print_content);
-	printf("\n");
+	// ft_lstiter(stack.pstk_a, print_content);
+	// printf("\n");
 	// ft_lstiter(stack.pstk_b, print_content);
 	// printf("\n");
 	free_nodes(stack.pstk_a);

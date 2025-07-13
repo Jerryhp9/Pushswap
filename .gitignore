@@ -5,8 +5,9 @@ hfunction/doubly_linked.c
 hfunction/singly_linked.c
 libft.a
 push_swap_visualizer
-file.txt
-tester
+push_swap_test_linux.sh
+text.txt
+Tester
 checker_linux
 checker_Mac
 .vscode

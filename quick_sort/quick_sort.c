@@ -87,27 +87,31 @@ void	quick_sort(t_container *stack, t_chunk *chunk, t_split *split)
 	start = NULL;
 	if (chunk->size == 0)
 		return;
-	else if (sorted_check(stack, chunk)) //push to top a
+	else if (sorted_check(stack, chunk) && chunk->location == TOP_A) //push to top a
 	{
 		// printf("location in sorted check is %d\n", chunk->location);
 		if (chunk->location != TOP_A)
-			send_top_sort(stack, chunk);
+		{
+			// printf("sends top sort\n");
+			// printf("size of current chunk %d\n", chunk->size);
+			sender(stack, chunk);
+		}
 		// printf("it checks whether it's sorted\n"); //! commented out
 		return;
 	}
-	if (chunk->size == 2 && chunk->location == TOP_A)
+	if (stack->a_counter == 2 && chunk->location == TOP_A)
 	{
-		printf("here\n");
+		// printf("it sort 2\n");
 		sort2(stack);
 		return;
 	}
-	if (chunk->size == 3 && chunk->location == TOP_A)
+	if (stack->a_counter == 3 && chunk->location == TOP_A)
 	{
 		// printf("it sort 3\n"); //! commented out
 		n_sort3(stack);
 		return;
 	}
-	else if (chunk->size == 5 && chunk->location == TOP_A)
+	else if (stack->a_counter == 5 && chunk->location == TOP_A)
 	{
 		// printf("a counter is %d\n", stack->a_counter);
 		sort5(stack);
@@ -134,11 +138,11 @@ void	quick_sort(t_container *stack, t_chunk *chunk, t_split *split)
 	}
 	else if (chunk->size > 3)
 	{
-		// printf("origin_chunk size %d\n", chunk->size); //!commented out
-		// printf("chunk location is %d\n", chunk->location);
-		// printf("mid chunk size is {%d}\n", stack->mid.size);
-		// printf("min chunk size is {%d}\n", stack->min.size);
-		// printf("max chunk size is {%d}\n", stack->max.size);
+	// 	printf("origin_chunk size %d\n", chunk->size); //!commented out
+	// 	printf("chunk location is %d\n", chunk->location);
+	// 	printf("mid chunk size is {%d}\n", stack->mid.size);
+	// 	printf("min chunk size is {%d}\n", stack->min.size);
+	// 	printf("max chunk size is {%d}\n", stack->max.size);
 		recursive_split(stack, chunk, split, start);
 		stack->min.size = chunk->min_count;
 		stack->mid.size = chunk->mid_count;
@@ -183,14 +187,6 @@ void	recursive_split(t_container *stack, t_chunk *chunk, t_split *split, nodes *
 	// for (int k = 0; k < chunk->size; k++)
 	// 	printf("%d ", data[k]);
 	// printf("\n");
-	// int maxt = find_max_int(data, chunk);
-	// printf("Data: "); //!debug
-	// for (int k = 0; k < chunk->size; k++)
-	// 	printf("%d ", data[k]);
-	// printf("\n");
-	// int mint = find_min_int(data, chunk);
-	// printf("max data of chunk is %d\n", maxt);
-	// printf("min data of chunk is %d\n", mint);
 	split->pivotS = chunk->size / 3;
 	split->pivotB = 2 * chunk->size / 3;
 	int total = chunk->size;
