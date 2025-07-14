@@ -12,10 +12,11 @@
 
 #include "../pushswap.h"
 
-nodes *create_nodes(nodes *head, int data)
+t_nodes	*create_nodes(t_nodes *head, int data)
 {
-	nodes *temp;
-	temp = malloc(sizeof(nodes));
+	t_nodes	*temp;
+
+	temp = malloc(sizeof(t_nodes));
 	if (!temp)
 		return (NULL);
 	temp->prev_link = NULL;
@@ -25,18 +26,19 @@ nodes *create_nodes(nodes *head, int data)
 	return (head);
 }
 
-void	last_node(nodes *head, int data)
+void	last_node(t_nodes *head, int data)
 {
-	nodes *temp;
-	nodes *tp;
-	temp = malloc(sizeof(nodes));
+	t_nodes	*temp;
+	t_nodes	*tp;
+
+	temp = malloc(sizeof(t_nodes));
 	if (!temp)
-		return;
+		return ;
 	temp->prev_link = NULL;
 	temp->data = data;
 	temp->next_link = NULL;
 	tp = head;
-	while(tp->next_link != NULL)
+	while (tp->next_link != NULL)
 		tp = tp->next_link;
 	temp->prev_link = tp;
 	tp->next_link = temp;
@@ -51,9 +53,9 @@ void	fail_data(long *data, int count)
 	}
 }
 
-nodes	*command_nodes(long *data, int argc, char **argv)
+t_nodes	*command_nodes(long *data, int argc, char **argv)
 {
-	nodes	*head;
+	t_nodes	*head;
 	int		i;
 	int		count;
 
@@ -80,15 +82,14 @@ nodes	*command_nodes(long *data, int argc, char **argv)
 	return (head);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	long		*data;
-	nodes		*stk_a;
-	nodes		*stk_b;
+	t_nodes		*stk_a;
+	t_nodes		*stk_b;
 	t_container	stack;
 	t_split		split;
-	t_chunk		chunk;
-	
+
 	if (argc == 1)
 		return (0);
 	if (argv[1][0] == '\0')
@@ -99,11 +100,11 @@ int main(int argc, char **argv)
 	data = 0;
 	stk_b = NULL;
 	stk_a = command_nodes(data, argc, argv);
-	stack = init(stk_a, stk_b); //TODO: understand the flow of the struct stack
+	stack = init(stk_a, stk_b);
 	data = index_data(data, argc, argv);
-	chunk = origin_size(&stack);
+	stack.origin_chunk = origin_size(&stack);
 	innit_chunk_proper(&stack);
-	quick_sort(&stack, &stack.origin_chunk, &split); //!uncomment later
+	quick_sort(&stack, &stack.origin_chunk, &split);
 	free_nodes(stack.pstk_a);
 	free(data);
 	return (0);

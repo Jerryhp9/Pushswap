@@ -12,7 +12,7 @@
 
 #include "../pushswap.h"
 
-void r_rotate_r(t_container *stack)
+void	r_rotate_r(t_container *stack)
 {
 	stack->is_combine = 1;
 	if (stack->pstk_a != NULL)

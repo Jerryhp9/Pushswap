@@ -14,13 +14,13 @@
 
 void	rotate_b(t_container *stack)
 {
-	nodes	*last;
-	nodes	*move;
+	t_nodes	*last;
+	t_nodes	*move;
 
 	move = NULL;
 	last = stack->pstk_b;
 	if (!stack->pstk_b || stack->pstk_b->next_link == NULL)
-		return;
+		return ;
 	while (last->next_link != NULL)
 		last = last->next_link;
 	move = stack->pstk_b;
@@ -29,6 +29,6 @@ void	rotate_b(t_container *stack)
 	move->next_link = NULL;
 	last->next_link = move;
 	stack->pstk_b->prev_link = NULL;
-	if(stack->is_combine == 0)
+	if (stack->is_combine == 0)
 		printf("rb\n");
 }

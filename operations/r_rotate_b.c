@@ -14,8 +14,8 @@
 
 void	r_rotate_b(t_container *stack)
 {
-	nodes *last_node;
-	nodes *second_last;
+	t_nodes	*last_node;
+	t_nodes	*second_last;
 
 	last_node = stack->pstk_b;
 	second_last = NULL;

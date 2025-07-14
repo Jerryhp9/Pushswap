@@ -12,23 +12,6 @@
 
 #include "../pushswap.h"
 
-int	move_top(int position, nodes *ptr, t_container *stack)
-{
-	nodes	*temp;
-
-	temp = stack->pstk_a;
-	while (temp)
-	{
-		if (temp == ptr)
-			return (position);
-		else if (temp != ptr)
-			position++;
-		temp = temp->next_link;
-	}
-	return 0;
-}
-
-
 void	position_a(int position, t_container *stack)
 {
 	if (position == 0)
@@ -79,10 +62,9 @@ void	position_b(int position, t_container *stack)
 	}
 }
 
-
-nodes	*find_min(nodes	*pmin, t_container *stack)
+t_nodes	*find_min(t_nodes	*pmin, t_container *stack)
 {
-	nodes	*travel;
+	t_nodes	*travel;
 	int		num;
 
 	pmin = stack->pstk_a;
@@ -100,11 +82,11 @@ nodes	*find_min(nodes	*pmin, t_container *stack)
 	return (pmin);
 }
 
-nodes	*find_max(nodes *pmax, t_container *stack)
+t_nodes	*find_max(t_nodes *pmax, t_container *stack)
 {
-	nodes	*travel;
+	t_nodes	*travel;
 	int		num;
-	
+
 	pmax = stack->pstk_a;
 	travel = stack->pstk_a->next_link;
 	num = stack->pstk_a->data;
@@ -122,10 +104,10 @@ nodes	*find_max(nodes *pmax, t_container *stack)
 
 void	sort5(t_container *stack)
 {
-	nodes	*min;
-	nodes	*max;
+	t_nodes	*min;
+	t_nodes	*max;
 	int		position;
-	nodes	*temp;
+	t_nodes	*temp;
 
 	min = NULL;
 	max = NULL;

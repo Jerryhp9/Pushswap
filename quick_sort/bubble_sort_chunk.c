@@ -15,7 +15,6 @@
 long	*index_data(long *data, int argc, char **argv)
 {
 	int	count;
-	
 
 	count = 0;
 	data = parse_long(argc, argv, &count);
@@ -49,7 +48,3 @@ long	*index_nodes(long *data, int count)
 	}
 	return (data);
 }
-
-
-
-

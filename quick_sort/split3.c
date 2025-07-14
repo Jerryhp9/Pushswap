@@ -14,7 +14,7 @@
 
 t_chunk	origin_size(t_container *stack)
 {
-	nodes	*ptr;
+	t_nodes	*ptr;
 
 	ptr = NULL;
 	ptr = stack->pstk_a;
@@ -27,6 +27,3 @@ t_chunk	origin_size(t_container *stack)
 	}
 	return (stack->origin_chunk);
 }
-
-
-

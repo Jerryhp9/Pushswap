@@ -40,15 +40,15 @@ void	sender(t_container *stack, t_chunk *chunk)
 
 void	send_top_sort(t_container *stack, t_chunk *chunk)
 {
-	nodes *temp;
-	nodes *temp2;
+	t_nodes	*temp;
+	t_nodes	*temp2;
 
 	temp = NULL;
 	temp2 = NULL;
 	if (chunk->size == 3 && chunk->location != TOP_A)
 	{
 		sender(stack, chunk);
-		sort3(stack); //TODO: SHORTEN THE LINES WITH A FUNCTION TO HANDLE LOCATION SWAPPING AND SORT3
+		sort3(stack);
 	}
 	else if (chunk->size == 2)
 	{

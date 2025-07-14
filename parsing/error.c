@@ -15,7 +15,7 @@
 int	invalid_argument(char *token)
 {
 	int	i;
-	
+
 	i = 0;
 	if (token[i] == '-' && (token[i + 1] >= '0' && token[i + 1] <= '9'))
 		i++;

@@ -14,15 +14,15 @@
 
 void	print_content(void *content)
 {
-	nodes	*data;
-	
-	data = ((nodes *)content);
+	t_nodes	*data;
+
+	data = ((t_nodes *)content);
 	printf("%d\n", data->data);
 }
 
 void	free_data(int *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (data[i])
@@ -32,9 +32,10 @@ void	free_data(int *data)
 	}
 }
 
-void	free_nodes(nodes *head)
+void	free_nodes(t_nodes *head)
 {
-	nodes* temp;
+	t_nodes	*temp;
+
 	while (head->next_link != NULL)
 	{
 		temp = head;
@@ -44,9 +45,9 @@ void	free_nodes(nodes *head)
 	free(head);
 }
 
-t_container	init (nodes *stk_a, nodes *stk_b)
+t_container	init(t_nodes *stk_a, t_nodes *stk_b)
 {
-	t_container container;
+	t_container	container;
 
 	container.pstk_a = stk_a;
 	container.pstk_b = stk_b;
@@ -56,4 +57,3 @@ t_container	init (nodes *stk_a, nodes *stk_b)
 	container.max.size = 0;
 	return (container);
 }
-

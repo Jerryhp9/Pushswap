@@ -26,7 +26,7 @@ operations/rotate_r.c quick_sort/sort3.c quick_sort/sort5.c \
 quick_sort/bubble_sort_chunk.c quick_sort/split3.c \
 quick_sort/mailman.c quick_sort/quick_sort.c quick_sort/sort_top3.c \
 quick_sort/chunk_data_presort.c quick_sort/sort2.c parsing/error.c \
-parsing/parse.c
+parsing/parse.c parsing/utils.c quick_sort/quick_sort_innit.c
 
 OBJ = $(SRC:.c=.o)
 

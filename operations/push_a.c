@@ -14,10 +14,10 @@
 
 void	push_a(t_container *stack)
 {
-	nodes* nodep;
+	t_nodes	*nodep;
 
 	if (stack->pstk_b == NULL)
-		return;
+		return ;
 	nodep = stack->pstk_b;
 	stack->pstk_b = stack->pstk_b->next_link;
 	nodep->next_link = stack->pstk_a;

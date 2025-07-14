@@ -12,18 +12,17 @@
 
 #include "../pushswap.h"
 
-void swap_a(t_container *stack)
+void	swap_a(t_container *stack)
 {
-	nodes *first;
-	nodes *second;
-	nodes *third;
+	t_nodes	*first;
+	t_nodes	*second;
+	t_nodes	*third;
 
 	second = NULL;
 	third = NULL;
 	if (!stack->pstk_a || stack->pstk_a->next_link == NULL)
-		return;
-	first = stack->pstk_a;
-	first = first->next_link;
+		return ;
+	first = stack->pstk_a->next_link;
 	second = stack->pstk_a;
 	if (first->next_link != NULL)
 		third = first->next_link;

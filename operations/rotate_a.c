@@ -9,18 +9,17 @@
 /*   Updated: 2025/05/19 14:48:29 by jhor             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../pushswap.h"
 
- #include "../pushswap.h"
-
- void	rotate_a(t_container *stack)
+void	rotate_a(t_container *stack)
 {
-	nodes	*last;
-	nodes	*move;
+	t_nodes	*last;
+	t_nodes	*move;
 
 	move = NULL;
 	last = stack->pstk_a;
 	if (!stack->pstk_a || stack->pstk_a->next_link == NULL)
-		return;
+		return ;
 	while (last->next_link != NULL)
 		last = last->next_link;
 	move = stack->pstk_a;
@@ -32,5 +31,5 @@
 	stack->pstk_a->prev_link = NULL;
 	if (stack->is_combine == 0)
 		printf("ra\n");
-	return;
+	return ;
 }

@@ -14,7 +14,7 @@
 
 void	sort2(t_container *stack)
 {
-	nodes *temp;
+	t_nodes	*temp;
 
 	temp = NULL;
 	temp = stack->pstk_a->next_link;

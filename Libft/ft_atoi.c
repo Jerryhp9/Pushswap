@@ -12,11 +12,6 @@
 
 #include "libft.h"
 
-//convert character into intergers
-//line 23 - condition within the isspace characters then means its true;
-//line 38 - if check whether it is + or -, if true then check if its - then change positive to negative sign;
-//line 44 - loop to change characters using dec 48 to get the remaining as the integer then + num to combine the integers;
-
 static int	ft_isspace(char c)
 {
 	if (c == ' ' || (c >= '\t' && c <= '\r'))

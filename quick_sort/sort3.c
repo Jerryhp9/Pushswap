@@ -34,8 +34,8 @@ void	diff_sort3(t_container *stack)
 
 void	n_sort3(t_container *stack)
 {
-	nodes	*middle;
-	nodes	*last;
+	t_nodes	*middle;
+	t_nodes	*last;
 
 	middle = stack->pstk_a->next_link;
 	last = middle->next_link;
@@ -62,8 +62,8 @@ void	n_sort3(t_container *stack)
 
 void	sort3(t_container *stack)
 {
-	nodes	*middle;
-	nodes	*last;
+	t_nodes	*middle;
+	t_nodes	*last;
 
 	middle = stack->pstk_a->next_link;
 	last = middle->next_link;

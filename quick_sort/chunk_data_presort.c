@@ -14,14 +14,14 @@
 
 int	find_max_int(int *data, t_chunk *chunk)
 {
-	int i;
-	int num;
+	int	i;
+	int	num;
 
 	i = 1;
 	num = data[0];
 	while (i < chunk->size)
 	{
-		if ( data[i] > num)
+		if (data[i] > num)
 			num = data[i];
 		i++;
 	}
@@ -30,14 +30,14 @@ int	find_max_int(int *data, t_chunk *chunk)
 
 int	find_min_int(int *data, t_chunk *chunk)
 {
-	int i;
-	int num;
+	int	i;
+	int	num;
 
 	i = 1;
 	num = data[0];
 	while (i < chunk->size)
 	{
-		if ( data[i] < num)
+		if (data[i] < num)
 		{
 			num = data[i];
 		}
@@ -46,9 +46,9 @@ int	find_min_int(int *data, t_chunk *chunk)
 	return (num);
 }
 
-nodes *find_start_node(t_container *stack, t_chunk *chunk)
+t_nodes	*find_start_node(t_container *stack, t_chunk *chunk)
 {
-	nodes *cur;
+	t_nodes	*cur;
 
 	cur = NULL;
 	if (chunk->location == TOP_A)
@@ -72,15 +72,14 @@ nodes *find_start_node(t_container *stack, t_chunk *chunk)
 
 int	*compare_max_chunk(t_container *stack, t_chunk *chunk)
 {
-	nodes *temp;
-	int *max;
-	int i;
+	t_nodes	*temp;
+	int		*max;
+	int		i;
 
 	i = 0;
-	max = ft_calloc(chunk->size, sizeof(int)); //TODO: define the chunk size related to subchunks
+	max = ft_calloc(chunk->size, sizeof(int));
 	temp = NULL;
 	temp = find_start_node(stack, chunk);
-	
 	while (temp != NULL && i < chunk->size)
 	{
 		max[i] = temp->data;

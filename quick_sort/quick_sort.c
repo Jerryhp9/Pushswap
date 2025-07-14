@@ -12,51 +12,12 @@
 
 #include "../pushswap.h"
 
-t_chunk	*innit_chunk_recurse(t_chunk *chunk)
-{
-	chunk->min_count = 0;
-	chunk->mid_count = 0;
-	chunk->max_count = 0;
-
-	return (chunk);
-}
-
-void	innit_chunk_proper(t_container *stack)
-{
-	stack->min.location = 0;
-	stack->mid.location = 0;
-	stack->max.location = 0;
-	stack->min.size = 0;
-	stack->mid.size = 0;
-	stack->max.size = 0;
-	stack->a_counter = stack->origin_chunk.size;
-	stack->b_counter = 0;
-}
-
-t_split	*innit_sorted(t_split *split)
-{
-	split->size = 0;
-	split->rank = 0;
-	split->val = 0;
-	split->pivotS = 0;
-	split->pivotB = 0;
-
-	return (split);
-}
-
-void	innit_sorted_check(t_sorted_c *sorted)
-{
-	sorted->i = 0;
-	sorted->j = 0;
-	sorted->data = NULL;
-}
-
 int	sorted_check(t_container *stack, t_chunk *chunk)
 {
 	t_sorted_c	sorted;
-	nodes		*ptr;
+	t_nodes		*ptr;
 
-	innit_sorted_check(&sorted); //TODO: SHORTEN ONE MORE LINE THEN TEST
+	innit_sorted_check(&sorted);
 	ptr = find_start_node(stack, chunk);
 	sorted.data = chunk_presort(sorted.data, stack, chunk);
 	if (!sorted.data)
@@ -81,13 +42,13 @@ int	sorted_check(t_container *stack, t_chunk *chunk)
 
 void	quick_sort_helper(t_container *stack, t_chunk *chunk, t_split *split)
 {
-	nodes *start;
-	t_chunk local_min;
-	t_chunk local_mid;
-	t_chunk local_max;
+	t_nodes	*start;
+	t_chunk	local_min;
+	t_chunk	local_mid;
+	t_chunk	local_max;
 
 	start = NULL;
-	recursive_split(stack, chunk, split, start);
+	recu_spt(stack, chunk, split, start);
 	stack->min.size = chunk->min_count;
 	stack->mid.size = chunk->mid_count;
 	stack->max.size = chunk->max_count;
@@ -105,66 +66,64 @@ void	quick_sort_helper(t_container *stack, t_chunk *chunk, t_split *split)
 void	quick_sort(t_container *stack, t_chunk *chunk, t_split *split)
 {
 	if (chunk->size == 0)
-		return;
+		return ;
 	else if (sorted_check(stack, chunk) && chunk->location == TOP_A)
 	{
-		if (chunk->location != TOP_A) //push to top a
+		if (chunk->location != TOP_A)
 			sender(stack, chunk);
-		return;
+		return ;
 	}
 	if (stack->a_counter == 2 && chunk->location == TOP_A)
-		return sort2(stack);
+		return (sort2(stack));
 	if (stack->a_counter == 3 && chunk->location == TOP_A)
-		return n_sort3(stack);
+		return (n_sort3(stack));
 	else if (stack->a_counter == 5 && chunk->location == TOP_A)
-		return sort5(stack);
-	else if (chunk->size <= 3 && chunk->location != TOP_A) //TODO: find a way to check the size of stack A and just sort if it is == 3
-		return send_top_sort(stack, chunk);
+		return (sort5(stack));
+	else if (chunk->size <= 3 && chunk->location != TOP_A)
+		return (send_top_sort(stack, chunk));
 	else if (chunk->size == 3 && chunk->location == TOP_A)
-		return sort3(stack);
+		return (sort3(stack));
 	else if (chunk->size == 2 && chunk->location == TOP_A)
-		return sort2(stack);
+		return (sort2(stack));
 	quick_sort_helper(stack, chunk, split);
 }
 
 void	send_by_location(t_container *stack, t_chunk *chunk, t_split *split)
 {
 	if (chunk->location == TOP_A)
-		TopA_sender(stack, chunk, split);
+		topa_sender(stack, chunk, split);
 	else if (chunk->location == BOTTOM_A)
-		BotA_sender(stack, chunk, split);
+		bota_sender(stack, chunk, split);
 	else if (chunk->location == TOP_B)
-		TopB_sender(stack, chunk, split);
+		topb_sender(stack, chunk, split);
 	else if (chunk->location == BOTTOM_B)
-		BotB_sender(stack, chunk, split);
+		botb_sender(stack, chunk, split);
 }
 
-void	recursive_split(t_container *stack, t_chunk *chunk, t_split *split, nodes *start)
+void	recu_spt(t_container *stk, t_chunk *chk, t_split *spt, t_nodes *st)
 {
-	int *data;
-	int i;
+	int	*data;
+	int	i;
 
 	data = 0;
 	i = -1;
-	innit_chunk_recurse(chunk);
-	data = chunk_presort(data, stack, chunk);
-	split->pivotS = chunk->size / 3;
-	split->pivotB = 2 * chunk->size / 3;
-	int total = chunk->size;
-	start = find_start_node(stack, chunk);
-	while (++i < total)
+	innit_chunk_recurse(chk);
+	data = chunk_presort(data, stk, chk);
+	spt->pivots = chk->size / 3;
+	spt->pivotb = 2 * chk->size / 3;
+	st = find_start_node(stk, chk);
+	while (++i < chk->size)
 	{
-		split->val = start->data;
-		split->rank = -1;
-		while (++split->rank < chunk->size)
-			if (data[split->rank] == split->val)
-				break;
-		if (chunk->location == TOP_A || chunk->location == TOP_B)
-			start = start->next_link;
-		else if (chunk->location == BOTTOM_A || chunk->location == BOTTOM_B)
-			start = start->prev_link;
-		send_by_location(stack, chunk, split);
+		spt->val = st->data;
+		spt->rank = -1;
+		while (++spt->rank < chk->size)
+			if (data[spt->rank] == spt->val)
+				break ;
+		if (chk->location == TOP_A || chk->location == TOP_B)
+			st = st->next_link;
+		else if (chk->location == BOTTOM_A || chk->location == BOTTOM_B)
+			st = st->prev_link;
+		send_by_location(stk, chk, spt);
 	}
 	free(data);
 }
-
