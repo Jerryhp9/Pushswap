@@ -12,9 +12,9 @@
 
 #include "../pushswap.h"
 
-t_chunk origin_size(t_container *stack)
+t_chunk	origin_size(t_container *stack)
 {
-	nodes *ptr;
+	nodes	*ptr;
 
 	ptr = NULL;
 	ptr = stack->pstk_a;

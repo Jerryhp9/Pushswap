@@ -56,3 +56,4 @@ t_container	init (nodes *stk_a, nodes *stk_b)
 	container.max.size = 0;
 	return (container);
 }
+

@@ -23,17 +23,13 @@ void	r_rotate_a(t_container *stack)
 	last = stack->pstk_a;
 	while (last->next_link != NULL)
 		last = last->next_link;
-	// printf("rra last node is %d\n", last->data);
 	before_last = last->prev_link;
-	// printf("rra second last node is %d\n", before_last->data);
 	before_last->next_link = NULL;
 	last->prev_link = NULL;
 	first = stack->pstk_a;
 	last->next_link = first;
 	first->prev_link = last;
-	// printf("rra second node is %d\n", first->data);
 	stack->pstk_a = last;
-	// printf("rra first node is %d\n", stack->pstk_a->data);
 	if (stack->is_combine == 0)
 		printf("rra\n");
 }

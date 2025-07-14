@@ -61,6 +61,12 @@ typedef struct s_parse {
 	int		i;
 } t_parse;
 
+typedef struct s_sorted_c {
+	int		i;
+	int		j;
+	int		*data;
+} t_sorted_c;
+
 int			ft_atoi(const char *str);
 nodes		*command_nodes(long *data, int argc, char **argv);
 void		last_node(nodes *head, int data);

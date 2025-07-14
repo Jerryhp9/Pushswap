@@ -73,8 +73,21 @@ void	free_fail(long *data, char *joined, char **tokens)
 	free(data);
 }
 
+void	innit(long **data, char **joined, char ***tokens, int *count)
+{
+	data = 0;
+	joined = NULL;
+	tokens = NULL;
+	count = 0;
+}
 
-long *parse_long(int argc, char **argv, int *counter)
+void	free_parse_long(char *joined, char **tokens)
+{
+	free(joined);
+	free_tokens(tokens);
+}
+
+long	*parse_long(int argc, char **argv, int *counter)
 {
 	long	*data;
 	char	*joined;
@@ -82,10 +95,7 @@ long *parse_long(int argc, char **argv, int *counter)
 	int		count;
 	int		i;
 	
-	data = 0;
-	joined = NULL;
-	tokens = NULL;
-	count = 0;
+	innit(&data, &joined, &tokens, &count);
 	i = 0;
 	joined = join_args(argc, argv);
 	tokens = ft_split(joined, ' ');
@@ -102,7 +112,6 @@ long *parse_long(int argc, char **argv, int *counter)
 		i++;
 	}
 	*counter = count;
-	free(joined);
-	free_tokens(tokens);
+	free_parse_long(joined, tokens);
 	return (data);
 }

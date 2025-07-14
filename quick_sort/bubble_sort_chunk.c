@@ -14,7 +14,7 @@
 
 long	*index_data(long *data, int argc, char **argv)
 {
-	int		count;
+	int	count;
 	
 
 	count = 0;
